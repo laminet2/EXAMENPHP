@@ -1,0 +1,22 @@
+{
+    "name": "user/examen-php",
+    "autoload": {
+        "psr-4": {
+            "App\\Model\\":"src/models",
+            "App\\Config\\":"src/config",
+            "App\\Controller\\":"src/controllers"
+        }
+    },
+    "authors": [
+        {
+            "name": "laminet2",
+            "email": "kamiya.traore@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^6.3"
+    },
+    "require": {
+        "rakit/validation": "^1.4"
+    }
+}
