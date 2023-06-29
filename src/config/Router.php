@@ -10,15 +10,20 @@ $Interdit=['getId','getPassword'];
 $listesControllers=["AuthController"];
 $url = $_SERVER["REQUEST_URI"];
 
+
 $url = explode("/",$url);
 array_shift($url);
 
 $controller=$url[0];
 
 if($controller==""){
-    $controller =new Controller;
-    $controller->redirectByRole($_SESSION["user"]??null);
-    echo 'coucou';
+    
+        $controller =new Controller;
+        $controller->redirectByRole($_SESSION["user"]??null);
+    
+    
+    #echo 'coucou';
+
 
 }elseif(Session::isset("user") && in_array($controller,$listesControllers)){
 

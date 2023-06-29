@@ -4,9 +4,9 @@
 	$errors=[];
 	if(Session::isset("errors")){
 		$errors=Session::get("errors");
-		dd($errors);
 		Session::unset("errors");
-		
+		$errors=$errors->firstOfAll();
+		#dump($errors);
 	}
 ?>
 <body class="img js-fullheight" style="background-image: url(<?=BASE_URL?>/./img/j-williams-tabzu_kbVs0-unsplash.jpg);">
@@ -21,7 +21,7 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">Se Connecter</h3>
-		      	<form action=<?=BASE_URL?> class="signin-form needs-validation" method="Post" >
+		      	<form action="<?=BASE_URL?>/AuthController/login" class="signin-form needs-validation" method="Post" >
 		      		<div class="form-group">
 		      			<input type="text" class="form-control <?= Help::errorField($errors,"login")?> " name="login" placeholder="Login" id="validationDefault01" >
 						  <div class="invalid-tooltip">
@@ -30,15 +30,22 @@
 		      		</div>
 					  
 	            <div class="form-group">
-	              <input id="password-field" type="password" name="motDePasse" class="form-control" placeholder="Mot de Passe" >
+	              <input id="password-field" type="password" name="motDePasse" class="form-control <?=Help::errorField($errors,"motDePasse")?>" placeholder="Mot de Passe" >
 	              <span toggle="#password-field" class=" fa fa-fw fa-eye field-icon toggle-password"></span>
+				  <div class="invalid-tooltip">
+        					<?=  $errors["motDePasse"]??"" ?>
+      				</div>
+					
 	            </div>
+				<?php if(isset($errors["user"])): ?>
+						<div class="alert alert-danger" role="alert">
+							<?=$errors["user"] ?>
+						</div>
+					<?php endif ?>
 
 					<div class="form-group">
-						<button type="submit"  class="btn form-control <?=Help::errorField($errors,"user")?> btn btn-primary submit px-3">CONNEXION</button>
-						<div class="invalid-feedback">
-							<?=$errors["user"] ??""?>
-						</div>
+						<button type="submit"  class="btn form-control  btn btn-primary submit px-3">CONNEXION</button>
+						
 					</div>
 
 				<input type="hidden" name="page" value="login" >

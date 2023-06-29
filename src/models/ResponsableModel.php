@@ -92,7 +92,7 @@ class ResponsableModel extends ActeurModel{
         return $this;
     }
     public function  findUserByLoginAndPassword(string $login,string $password){
-        return $this->executeSelect("select * from $this->table where login like :login and password like :password",
+        return $this->executeSelect("select * from $this->table where login like :login and motDePasse like :password",
                               [
                                "login"=>$login,
                                "password"=>$password,  

@@ -44,10 +44,11 @@ class Controller{
             switch ($role) {
                 case 'Admin':
                     # code...
+                    #$this->redirect("")
                     break;
                 
                 case 'ResponsableVente':
-                    # code...
+                    #code...
                     break;
                 case 'ResponsableProduction':
                     break;

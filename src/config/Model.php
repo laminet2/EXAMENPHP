@@ -4,15 +4,16 @@ namespace App\config;
 abstract class Model{
 
 protected string $table;
-protected \PDO $dataBase;
+protected static \PDO $dataBase;
 
 
 public function __construct()
 {
     try {
-        $this->dataBase= new \PDO("mysql:host=localhost:3306;db_name=examenPhp","root","");
+        Self::$dataBase = new \PDO("mysql:host=localhost:3306;dbname=examenphp","root","");
     } catch (\Throwable $th) {
         //throw $th;
+
     }
 
 }    
@@ -26,10 +27,13 @@ public function findBy(string $filtre,mixed $value):self{
 
 public function executeSelect(string $sql,array $data=[],$single=false){
     //prepare ==> requete avec parametres
-    $stm= $this->dataBase->prepare($sql);
+    
+
+    
+    $stm= self::$dataBase->prepare($sql);
     $stm->setFetchMode(\PDO::FETCH_CLASS,get_called_class());
     $stm->execute($data);
-
+    
     if($single){
        return  $stm->fetch() ;
     }else{

@@ -8,16 +8,16 @@ class Session{
         }
          
       }
-    public static function set($key,$value){
+    public static function set(string $key,$value){
         $_SESSION[$key]=$value;
     }
-    public static function get($key){
+    public static function get(string $key){
         return $_SESSION[$key];
     }
-    public static function isset($key){
+    public static function isset(string $key){
         return isset($_SESSION[$key]);
     }
-    public static function unset($key){
+    public static function unset(string $key){
         unset($_SESSION[$key]);
     }
     public static function destroy(){

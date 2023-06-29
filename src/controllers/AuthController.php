@@ -1,6 +1,7 @@
 <?php 
 namespace App\Controller;
 use App\Config\Controller;
+use App\Config\Help;
 use App\Model\ResponsableModel;
 use App\Config\Session;
 use Rakit\Validation\Validator;
@@ -15,35 +16,42 @@ public function __construct() {
 }
 public function login(){
     
-    
-    if(isset($_SERVER["REQUEST_URI"])){
+
+    if($_POST==[]){
         //Help::dumpDie([]);
         $this->renderView("auth/login");
-
+        exit();
 
     }else{
         //help::dumpDie([]);
         $validator = new Validator;
         // Validator::isEmail($_POST["login"],"login");
         // Validator::isVide($_POST["motDePasse"],"motDePasse"); 
-        $validation = $validator->validate($_POST, [
+        $validation = $validator->make($_POST, [
             'login'                 => 'required|email',
             'motDePasse'              => 'required|min:3',
         ]); 
+        $validation->setMessage('required', ':attribute Obligatoire .');
+
+        $validation->validate();
         if(!$validation->fails()){
             
             extract($_POST);
-            $user=$ResponsableModel->findUserByLoginAndPassword($login,$motDePasse);
+            $user= $this->ResponsableModel->findUserByLoginAndPassword($login,$motDePasse);
+            $user=$user?$user!=false:null;
             $validation = $validator->make([ 'user' => $user, ],['user' => 'required',]);
-            if($validation->fails()){
-                $validation->setMessage('required', 'Aucun :attribute ne correspond a ce compte.');
-            }else{
+            $validation->setMessage('required', 'Aucun :attribute ne correspond a ce compte.');
+            $validation->validate();
+
+            if(!$validation->fails()){
                 Session::set("user",$user);
+
                 //redirection
-                $this->renderView("404");
+                $this->redirectByRole($user);
+                exit();
             }
 
-        }Session::set($validation->errors(),"errors");
+        }Session::set("errors",$validation->errors());
         $this->redirect("AuthController/login");
     }
 }

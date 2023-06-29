@@ -4,15 +4,31 @@ abstract class ActeurModel extends Model{
 protected int $id;
 protected string $nom;
 protected string $prenom;
-protected array $telephone;
+protected string $telephone;
 protected string $addresse;
-protected string $idPhoto;
+protected string $photo;
 protected string $type;
 
 public function __construct(){
     parent::__construct();
-    $this->table="Acteur";
+    $this->table="acteur";
 }
 
+
+	/**
+	 * @return int
+	 */
+	public function getId(): int {
+		return $this->id;
+	}
+	
+	/**
+	 * @param int $id 
+	 * @return self
+	 */
+	public function setId(int $id): self {
+		$this->id = $id;
+		return $this;
+	}
 }
 ?>
