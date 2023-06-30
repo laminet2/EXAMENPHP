@@ -45,7 +45,7 @@ public function executeSelect(string $sql,array $data=[],$single=false){
     //$sql="select * from categorie where id=$id" ;Jamais
     $sql="delete from $this->table where id=:x";//Requete preparee
     //prepare ==> requete avec parametres
-    $stm= $this->dataBase->prepare($sql);
+    $stm= self::$dataBase->prepare($sql);
     $stm->execute(["x"=>$id]);
     return  $stm->rowCount() ;
  }
