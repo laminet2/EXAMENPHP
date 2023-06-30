@@ -1,9 +1,11 @@
 <?php namespace App\Model;
       use App\config\Model;
-class DetailAppro extends Model{
+class DetailApproModel extends Model{
 private $id;
 private $qte;
 private $prixAchat;
+private int $fournisseurID;
+
 
 private $ArtConfectionID;
 private $ApproID;
@@ -75,6 +77,22 @@ public function __construct(){
 	 */
 	public function setApproID($ApproID): self {
 		$this->ApproID = $ApproID;
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getFournisseurID(): int {
+		return $this->fournisseurID;
+	}
+	
+	/**
+	 * @param int $fournisseurID 
+	 * @return self
+	 */
+	public function setFournisseurID(int $fournisseurID): self {
+		$this->fournisseurID = $fournisseurID;
 		return $this;
 	}
 }

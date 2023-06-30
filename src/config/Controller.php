@@ -26,12 +26,14 @@ class Controller{
 
         ob_start();
             extract($data);
-            require_once("./../views/$view.html.php");
+            require_once("./..views/$view.html.php");
         $contentView=ob_get_clean();
         require_once("./../views/layout/$this->layout.html.php");
 
     }
     public  function redirect(string $path){
+        #$encodedUrl = urlencode($path);
+        
         header("location:".BASE_URL."/$path");
         exit();
     }
@@ -44,7 +46,9 @@ class Controller{
             switch ($role) {
                 case 'Admin':
                     # code...
-                    #$this->redirect("")
+                    #dd(Session::get("user"));
+                    #$this->renderView("acteur/form");
+                    $this->redirect("ActeurController/showFormActeur");
                     break;
                 
                 case 'ResponsableVente':

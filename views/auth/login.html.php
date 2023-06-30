@@ -21,7 +21,7 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">Se Connecter</h3>
-		      	<form action="<?=BASE_URL?>/AuthController/login" class="signin-form needs-validation" method="Post" >
+		      	<form action="<?=BASE_URL?>" class="signin-form needs-validation" method="Post" >
 		      		<div class="form-group">
 		      			<input type="text" class="form-control <?= Help::errorField($errors,"login")?> " name="login" placeholder="Login" id="validationDefault01" >
 						  <div class="invalid-tooltip">
@@ -48,7 +48,7 @@
 						
 					</div>
 
-				<input type="hidden" name="page" value="login" >
+				<input type="hidden" name="route" value="AuthController/login" >
 
 	          </form>
 	          

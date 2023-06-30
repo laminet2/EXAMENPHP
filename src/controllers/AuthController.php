@@ -38,15 +38,17 @@ public function login(){
             
             extract($_POST);
             $user= $this->ResponsableModel->findUserByLoginAndPassword($login,$motDePasse);
-            $user=$user?$user!=false:null;
-            $validation = $validator->make([ 'user' => $user, ],['user' => 'required',]);
+            $userTrouver = $user ? $user!=false :null;
+            
+            $validation = $validator->make([ 'user' => $userTrouver, ],['user' => 'required',]);
             $validation->setMessage('required', 'Aucun :attribute ne correspond a ce compte.');
             $validation->validate();
-
             if(!$validation->fails()){
                 Session::set("user",$user);
-
+                
                 //redirection
+                #dump($user);
+
                 $this->redirectByRole($user);
                 exit();
             }
