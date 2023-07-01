@@ -17,10 +17,10 @@
         <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
             aria-haspopup="true" data-toggle="modal" data-target="#logoutModal">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=Session::get("user")["nom"]." ".Session::get("user")["prenom"] ?></span>
             <img class="img-profile rounded-circle"
-                  src="img/undraw_profile.svg">
-            </a>
+                  src= "<?= BASE_URL."/"."public/img/".Session::get("user")["photo"] ?>">
+        </a>
         </li>
 
         </ul>

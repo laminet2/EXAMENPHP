@@ -48,8 +48,8 @@ if($controller==""){
         $action=$url[1];
 
         
-        $controller = new $controller();
-        dump(method_exists($controller,$action));
+         $controller= instanceController($controller);
+        #dump(method_exists($controller,$action));
 
         if(method_exists($controller,$action) && !in_array($action,$Interdit)){
             #dump(session_status()== PHP_SESSION_NONE);
@@ -76,6 +76,19 @@ if($controller==""){
   $controller = new AuthController;
     
   $controller->login();
+
+  function instanceController($controller){
+    switch ($controller) {
+        case 'AuthController':
+            # code...
+            return new AuthController();
+        case 'ActeurController':
+            return new ActeurController();
+        default:
+            # code...
+            break;
+    }
+  }
 
 
 // if(isset($_POST["page"])){
