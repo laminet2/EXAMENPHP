@@ -18,8 +18,17 @@ public function __construct()
 
 }    
 
-public function find():array{
-    return $this->executeSelect("select * from $this->table" );
+public function find(array $data=null):array{
+    $element="*";
+    
+    return $this->executeSelect("select $element from $this->table" );
+}
+public function findReturnArrayWithMySelecteur($data):array{
+    $element="*";
+    if($data!=null){
+        $element=implode(",",$data);
+    }
+    return $this->executeSelectReturnArray("select $element from $this->table" );
 }
 public function findBy(string $filtre,mixed $value):self{
     return  $this->executeSelect("select * from $this->table where $filtre=:x",["x"=>$value],true);
@@ -27,9 +36,7 @@ public function findBy(string $filtre,mixed $value):self{
 
 public function executeSelect(string $sql,array $data=[],$single=false){
     //prepare ==> requete avec parametres
-    
 
-    
     $stm= self::$dataBase->prepare($sql);
     $stm->setFetchMode(\PDO::FETCH_CLASS,get_called_class());
     $stm->execute($data);
@@ -39,7 +46,19 @@ public function executeSelect(string $sql,array $data=[],$single=false){
     }else{
        return $stm->fetchAll(\PDO::FETCH_CLASS,get_called_class()); 
     }
+ }
+ public function executeSelectReturnArray(string $sql,array $data=[],$single=false){
+    //prepare ==> requete avec parametres
 
+    $stm= self::$dataBase->prepare($sql);
+    $stm->setFetchMode(\PDO::FETCH_ASSOC);
+    $stm->execute($data);
+    
+    if($single){
+       return  $stm->fetch() ;
+    }else{
+       return $stm->fetchAll(\PDO::FETCH_ASSOC); 
+    }
  }
  public function remove(int $id):int{
     //$sql="select * from categorie where id=$id" ;Jamais

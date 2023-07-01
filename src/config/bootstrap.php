@@ -1,6 +1,9 @@
 <?php define("BASE_URL","http://localhost/examenPHP");
 
-use App\Config\Session ;
-use App\Config\validator ;
-use App\Config\Help ;
+
+use App\Model\ActeurModel;
+use App\Model\ResponsableModel;
+
+session_start();
+
 ?>

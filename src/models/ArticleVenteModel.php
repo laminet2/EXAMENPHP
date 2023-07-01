@@ -1,6 +1,6 @@
 <?php 
 namespace App\Model;
-class ArticleVente extends ArticleModel{
+class ArticleVenteModel extends ArticleModel{
     private $prixVente;
     public function __construct(){
         parent::__construct();

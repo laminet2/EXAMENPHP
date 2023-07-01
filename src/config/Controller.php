@@ -55,7 +55,7 @@ class Controller{
                     #dd(Session::get("user"));
                     #$this->renderView("acteur/form");
                     
-                    $this->redirect("ActeurController/showFormActeur");
+                    $this->redirect("ArticleController/save");
                     break;
                 
                 case 'ResponsableVente':

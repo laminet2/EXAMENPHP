@@ -15,11 +15,16 @@
                  
              <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
+        <?php use App\Config\Session;
+              use App\Model\ResponsableModel;
+              $user=new ResponsableModel;
+              $user=Session::get("user");
+         ?>
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
             aria-haspopup="true" data-toggle="modal" data-target="#logoutModal">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=Session::get("user")["nom"]." ".Session::get("user")["prenom"] ?></span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 big"><?=$user->getNom()." ".$user->getPrenom() ?></span>
             <img class="img-profile rounded-circle"
-                  src= "<?= BASE_URL."/"."public/img/".Session::get("user")["photo"] ?>">
+                  src= "<?= BASE_URL."/"."public/img/".$user->getPhoto() ?>">
         </a>
         </li>
 

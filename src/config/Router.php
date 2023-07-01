@@ -2,13 +2,14 @@
 
 use App\Config\Controller;
 use App\Config\Session;
+use App\Controller\ArticleController;
 use App\Controller\AuthController;
 use App\Controller\ActeurController;
 
 #phpinfo();
 #echo("coucou");
 $Interdit=['getId','getPassword'];
-$listesControllers=["AuthController","ActeurController"];
+$listesControllers=["AuthController","ActeurController","ArticleController"];
 #var_dump($_SESSION);
 
 if(isset($_POST["route"])){
@@ -31,7 +32,7 @@ if(isset($_POST["route"])){
 
 #var_dump(session_status()==PHP_SESSION_NONE);
 
-if($controller==""){
+if($controller=="" or $controller=="Perdu"){
     #dd("controller vide");
         
         $controller =new Controller;
@@ -84,6 +85,8 @@ if($controller==""){
             return new AuthController();
         case 'ActeurController':
             return new ActeurController();
+        case "ArticleController":
+            return new ArticleController();
         default:
             # code...
             break;

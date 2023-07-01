@@ -41,6 +41,7 @@
   --font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+
 .backCustom{
   background: #00bf8f;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #001510, #00bf8f);  /* Chrome 10-25, Safari 5.1-6 */
@@ -222,12 +223,13 @@
     opacity: 0.9;
   }
 
+
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
 html {
   font-family: sans-serif;
   line-height: 1.15;

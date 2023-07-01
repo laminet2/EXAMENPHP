@@ -61,6 +61,10 @@ public function login(){
         $this->redirect("AuthController/login");
     }
 }
+public function logout(){
+    Session::destroy();
+    $this->redirect("AuthController/login");
+}
 
 }
 ?>

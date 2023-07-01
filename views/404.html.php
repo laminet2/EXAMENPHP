@@ -3,5 +3,5 @@
      <div class="error mx-auto" data-text="404">404</div>
     <p class="lead text-gray-800 mb-5">Page Introuvable</p>
     <p class="text-gray-500 mb-0">Il s'emblerais que tu soit egaré mon jeune ...</p>
-    <a href="">&larr; Viens je te guide</a>
+    <a href="<?=BASE_URL?>/Perdu">&larr; Viens je te guide</a>
 </div>

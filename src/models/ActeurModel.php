@@ -30,5 +30,53 @@ public function __construct(){
 		$this->id = $id;
 		return $this;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getNom(): string {
+		return $this->nom;
+	}
+	
+	/**
+	 * @param string $nom 
+	 * @return self
+	 */
+	public function setNom(string $nom): self {
+		$this->nom = $nom;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPrenom(): string {
+		return $this->prenom;
+	}
+	
+	/**
+	 * @param string $prenom 
+	 * @return self
+	 */
+	public function setPrenom(string $prenom): self {
+		$this->prenom = $prenom;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPhoto(): string {
+		return $this->photo;
+	}
+	
+	/**
+	 * @param string $photo 
+	 * @return self
+	 */
+	public function setPhoto(string $photo): self {
+		$this->photo = $photo;
+		return $this;
+	}
 }
 ?>
