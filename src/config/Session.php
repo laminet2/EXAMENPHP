@@ -9,6 +9,7 @@ class Session{
          
       }
     public static function set(string $key,$value){
+        self::start();
         $_SESSION[$key]=$value;
     }
     public static function get(string $key){

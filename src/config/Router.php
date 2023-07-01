@@ -3,39 +3,53 @@
 use App\Config\Controller;
 use App\Config\Session;
 use App\Controller\AuthController;
+use App\Controller\ActeurController;
 
 #phpinfo();
 #echo("coucou");
 $Interdit=['getId','getPassword'];
 $listesControllers=["AuthController","ActeurController"];
+#var_dump($_SESSION);
 
 if(isset($_POST["route"])){
+
     $url=$_POST["route"];
     $url = explode("/",$url);
     $controller=$url[0];
-
+    
 
 }else{
+
     $url = $_SERVER["REQUEST_URI"];
+    #dump($_GET);
     $url = explode("/",$url);
-    array_shift($url);
+    
+    $url=array_slice($url,2);
     $controller=$url[0];
+    #dd(Session::isset("user"));
 }
 
-if($controller==""){
+#var_dump(session_status()==PHP_SESSION_NONE);
 
+if($controller==""){
+    #dd("controller vide");
+        
         $controller =new Controller;
         $controller->redirectByRole($_SESSION["user"]??null);
     
     #echo 'coucou';
 
 }elseif(Session::isset("user") && in_array($controller,$listesControllers)){
+
     #dump(in_array($controller,$listesControllers));
-    dump("je suis arriver dans header");
  
     if(count($url)>1){
         //cela signifie qu'elle possede une action
         $action=$url[1];
+
+        
+        $controller = new $controller();
+        dump(method_exists($controller,$action));
 
         if(method_exists($controller,$action) && !in_array($action,$Interdit)){
             #dump(session_status()== PHP_SESSION_NONE);
@@ -58,8 +72,10 @@ if($controller==""){
         //Ici il s'agit d'une url sans action alors on le redirige vers sa page concerné
         #$controller->redirectByRole($_SESSION["user"]->getRole()??null);
     }
-} $controller = new AuthController;
-   $controller->login();
+} 
+  $controller = new AuthController;
+    
+  $controller->login();
 
 
 // if(isset($_POST["page"])){

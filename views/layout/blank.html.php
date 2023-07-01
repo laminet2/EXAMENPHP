@@ -12,13 +12,13 @@
     <title>SB Admin 2 - 404</title>
 
     <!-- Custom fonts for this template-->
-    <link href="<?=BASE_URL?>/./../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="./../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?=BASE_URL?>/./css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?=BASE_URL?>/public/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -58,14 +58,14 @@
     <!-- Logout Modal-->
    
     <!-- Bootstrap core JavaScript-->
-    <script src="<?=BASE_URL?>/./../vendor/jquery/jquery.min.js"></script>
-    <script src="<?=BASE_URL?>/./../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?=BASE_URL?>/public/vendor/jquery/jquery.min.js"></script>
+    <script src="<?=BASE_URL?>/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="<?=BASE_URL?>/./../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?=BASE_URL?>/public/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<?=BASE_URL?>/./js/sb-admin-2.min.js"></script>
+    <script src="<?=BASE_URL?>/public/js/sb-admin-2.min.js"></script>
 
 </body>
 

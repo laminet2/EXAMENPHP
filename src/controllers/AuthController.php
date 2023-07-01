@@ -24,6 +24,8 @@ public function login(){
 
     }else{
         //help::dumpDie([]);
+        
+
         $validator = new Validator;
         // Validator::isEmail($_POST["login"],"login");
         // Validator::isVide($_POST["motDePasse"],"motDePasse"); 
@@ -45,15 +47,17 @@ public function login(){
             $validation->validate();
             if(!$validation->fails()){
                 Session::set("user",$user);
-                
                 //redirection
+                #dump($user);
                 #dump($user);
 
                 $this->redirectByRole($user);
                 exit();
             }
 
-        }Session::set("errors",$validation->errors());
+        }
+
+        Session::set("errors",$validation->errors());
         $this->redirect("AuthController/login");
     }
 }

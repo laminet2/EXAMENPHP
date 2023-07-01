@@ -26,15 +26,20 @@ class Controller{
 
         ob_start();
             extract($data);
-            require_once("./..views/$view.html.php");
+            require_once("./../views/$view.html.php");
         $contentView=ob_get_clean();
         require_once("./../views/layout/$this->layout.html.php");
 
     }
     public  function redirect(string $path){
         #$encodedUrl = urlencode($path);
-        
-        header("location:".BASE_URL."/$path");
+        #session_regenerate_id(true);
+        if(session_write_close ()){
+            #dump("coucou");
+            #dump("coucou");
+            header("Location:".BASE_URL."/".$path);
+            session_write_close();
+        }
         exit();
     }
 
@@ -43,11 +48,13 @@ class Controller{
             $this->redirect("AuthController/login");
         }else{
             $role=$user->getRole();
+
             switch ($role) {
                 case 'Admin':
                     # code...
                     #dd(Session::get("user"));
                     #$this->renderView("acteur/form");
+                    
                     $this->redirect("ActeurController/showFormActeur");
                     break;
                 
