@@ -49,7 +49,6 @@
   }
   .section {
     position: relative;
-    height: 80vh;
   }
   
   .section .section-center {
@@ -217,10 +216,37 @@
     -webkit-transition: 0.2s all;
     transition: 0.2s all;
   }
+  .booking-form div button.submit-btn{
+    width: 30%;
+
+  }
+  .booking-form div button.submit-btn.bleue{
+    background-color: var(--primary);
+
+  }
+  .booking-form div button.submit-btn.vert{
+    background-color: var(--success);
+
+  }
+  .booking-form div button.submit-btn:disabled {
+    opacity: 0.9;
+    color:white;
+    background-color:var(--gray);
+    font-size: 14px;
+    font-weight: 400;
+
+
+  }
   
   .booking-form .submit-btn:hover,
   .booking-form .submit-btn:focus {
     opacity: 0.9;
+
+    color:var(--white);
+    font-weight: bold;
+    font-size: 16px;
+
+
   }
 
 

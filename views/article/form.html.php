@@ -1,23 +1,6 @@
-<?php
-    use App\Config\Session;
-    use App\Config\Help;
-    $errors=[];
-    $success=[];
-    if(Session::isset("erreurs") && !is_array(Session::get("erreurs"))){
-        $errors=Session::get("erreurs");
-        $errors=$errors->firstOfAll();
-        #dump($errors);
-        Session::unset("erreurs");
-
-    }elseif(Session::isset("success")){
-        $success=Session::get("success");
-        Session::unset("success");
-    }elseif(Session::isset("erreurs")){
-        $errors=Session::get("erreurs");
-        Session::unset("erreurs");
-
-    }
-
+<?php 
+use App\Config\Session;
+use App\Config\Help;
 ?>
 <div id="booking" class="section">
 		<div class="section-center">

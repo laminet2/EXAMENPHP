@@ -1,5 +1,7 @@
 <?php 
 namespace App\Config;
+use App\Config\Session;
+use App\Config\Help;
 
 class Controller{
     protected string $layout;
@@ -26,6 +28,26 @@ class Controller{
 
         ob_start();
             extract($data);
+           
+                
+                $errors=[];
+                $success=[];
+                if(Session::isset("erreurs") && !is_array(Session::get("erreurs"))){
+                    $errors=Session::get("erreurs");
+                    $errors=$errors->firstOfAll();
+                    #dump($errors);
+                    Session::unset("erreurs");
+
+                }elseif(Session::isset("success")){
+                    $success=Session::get("success");
+                    Session::unset("success");
+                }elseif(Session::isset("erreurs")){
+                    $errors=Session::get("erreurs");
+                    Session::unset("erreurs");
+
+                }
+
+                
             require_once("./../views/$view.html.php");
         $contentView=ob_get_clean();
         require_once("./../views/layout/$this->layout.html.php");

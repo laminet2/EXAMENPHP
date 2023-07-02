@@ -12,7 +12,7 @@ private $ApproID;
 
 public function __construct(){
     parent::__construct();
-    $this->table="detailAppro";
+    $this->table="detailappro";
 
 }
 

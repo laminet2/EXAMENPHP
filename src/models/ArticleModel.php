@@ -133,7 +133,7 @@ return $this;
 					   "type" => $this->type,
 					   "prixVente"=>$this->type=="articleVente"?$data:NULL,
 					   "categorieID"=>$this->categorieID,
-					   "photo"=> $this->photo,
+					   "photo"=> $this->photo??"",
 					   "montantVente"=>$this->type=="articleVente"?0:null,
 			]);
 		return  $stm->rowCount() ;
