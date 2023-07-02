@@ -78,7 +78,7 @@
                     <div class="modal-body">Selectionner Deconnexion si vous souhaiter reellement vous deconnecter</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                        <a class="btn btn-primary" href="AuthController/logout">Deconnexion</a>
+                        <a class="btn btn-primary" href="<?=BASE_URL?>/AuthController/logout">Deconnexion</a>
                     </div>
                 </div>
             </div>

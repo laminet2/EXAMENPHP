@@ -117,7 +117,6 @@ return $this;
 	
 	/**
 	 * @param int $id 
-	 * @return self
 	 */
 	public function setId(int $id): self {
 		$this->id = $id;
@@ -125,15 +124,16 @@ return $this;
 	}
 	public function insert($data=null):int{
 		//$sql="select * from categorie where id=$id" ;Jamais
-		$sql="INSERT INTO $this->table values (NULL, :libelle, :qteStock, :type, :categorieID, :photo ,:prixVente,:montantVente) ";//Requete preparee
-		//prepare ==> requete avec parametres
-		$stm= $this->dataBase->prepare($sql);
+		$sql="INSERT INTO $this->table values (NULL, :libelle, :qteStock, :type, :categorieID, :photo,:prixVente,:montantVente) ";//Requete preparee
+		//prepare ==> requete avec parametres*
+		#dd($this->photo);
+		$stm= self::$dataBase->prepare($sql);
 		$stm->execute(["libelle"=>$this->libelle,
 					   "qteStock"=>$this->qteStock,
 					   "type" => $this->type,
 					   "prixVente"=>$this->type=="articleVente"?$data:NULL,
 					   "categorieID"=>$this->categorieID,
-					   "photo"=>$this->photo,
+					   "photo"=> $this->photo,
 					   "montantVente"=>$this->type=="articleVente"?0:null,
 			]);
 		return  $stm->rowCount() ;

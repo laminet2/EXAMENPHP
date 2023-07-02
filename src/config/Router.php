@@ -24,8 +24,11 @@ if(isset($_POST["route"])){
     $url = $_SERVER["REQUEST_URI"];
     #dump($_GET);
     $url = explode("/",$url);
-    
+    #dump($url);
+
     $url=array_slice($url,2);
+    #dump($url);
+
     $controller=$url[0];
     #dd(Session::isset("user"));
 }
@@ -44,7 +47,7 @@ if($controller=="" or $controller=="Perdu"){
 
     #dump(in_array($controller,$listesControllers));
  
-    if(count($url)>1){
+    if(count($url)>=1 and count($url)<=3){
         //cela signifie qu'elle possede une action
         $action=$url[1];
 
@@ -61,7 +64,8 @@ if($controller=="" or $controller=="Perdu"){
             }else{
                 //alors il a des arguments et nous on se limite a 3 arguments dans le get ainsi on s'en arrete la
                 $filter=$url[2];
-                call_user_func(array($controller,$action),$filter);
+                $controller->$action($filter);
+                #call_user_func_array(array($controller, $action), array($filter));
             } exit();
         }else{
             $controller = new Controller;

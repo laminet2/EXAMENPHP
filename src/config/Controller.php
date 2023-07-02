@@ -38,7 +38,6 @@ class Controller{
             #dump("coucou");
             #dump("coucou");
             header("Location:".BASE_URL."/".$path);
-            session_write_close();
         }
         exit();
     }

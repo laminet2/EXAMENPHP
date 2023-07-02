@@ -30,8 +30,8 @@ public function findReturnArrayWithMySelecteur($data):array{
     }
     return $this->executeSelectReturnArray("select $element from $this->table" );
 }
-public function findBy(string $filtre,mixed $value):self{
-    return  $this->executeSelect("select * from $this->table where $filtre=:x",["x"=>$value],true);
+public function findBy(string $filtre,mixed $value){
+    return  $this->executeSelect("select * from $this->table where $filtre=:x",["x"=>$value]);
   }
 
 public function executeSelect(string $sql,array $data=[],$single=false){

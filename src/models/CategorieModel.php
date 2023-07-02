@@ -55,10 +55,10 @@ use App\config\Model;
 
      public function insert():int{
         //$sql="select * from categorie where id=$id" ;Jamais
-        $sql="INSERT INTO $this->table (`id`, `libelle`) VALUES (NULL,:libelle)";//Requete preparee
+        $sql="INSERT INTO $this->table (`id`, `libelle`,`type`) VALUES (NULL,:libelle,:type)";//Requete preparee
         //prepare ==> requete avec parametres
         $stm= self::$dataBase->prepare($sql);
-        $stm->execute(["libelle"=>$this->libelle]);
+        $stm->execute(["libelle" => $this->libelle,"type" => $this->type]);
         return  $stm->rowCount() ;
      }
     
