@@ -19,10 +19,7 @@ class ProductionController extends Controller{
         $this->articleConfModel=new ArticleConfModel;
         
     }
-    public function save(){
-        $this->renderView('appro/form');
-    }
-
+    
     public function IdExiste($articleID,$tabObjets){
         foreach ($tabObjets as $key=>$objet) {
             if($objet[1]->getId()==$articleID){
@@ -32,7 +29,25 @@ class ProductionController extends Controller{
             }
         }
         return null;
+    }
 
+    public function deleteArticleConfSelect($filter){
+        if($filter!=null){
+            $filter=explode("-",$filter);
+            if(count($filter)>1 and $filter[0]=="articleConf"){
+                //tester si $filter[1] est in isdigit() and si Session::isset("articleConfSelectionner")
+                
+                $articleConfSelectionner=Session::get("articleConfSelectionner");
+                $key=$this->IdExiste(intVal($filter[1]),Session::get("articleConfSelectionner"));
+                if($key!== null){
+                    //supprimer en php $articleConfSelectionner.remove($key)
+                     
+                    //J'enregistre la nouvelle tables
+                    Session::set("articleConfSelectionner",$articleConfSelectionner);
+                }
+
+            }
+        } $this->redirect("ProductionController/add/articleConf");
     }
     public function add(string $filter=null){
 
@@ -84,15 +99,33 @@ class ProductionController extends Controller{
             }
             $articlesConf=$this->articleConfModel->findBy("type","articleConf");
             #dd($articlesConf);
-            $this->renderView("appro/form",["articlesConf"=>$articlesConf,"filter"=>$filter]);
+            $this->renderView("production/form",["articlesConf"=>$articlesConf,"filter"=>$filter]);
             exit();
 
         }else{
             $this->redirectByRole(Session::get("user")??null);
         }
-        
 
     }
+    public function save($filter=null){
+
+        if($filter==null){
+
+
+
+            $this->renderView('production/form');
+        }elseif($filter=="Production"){
+            //Enregistrer
+            
+            //verifier que le tableau qui contient les articleVente n'est pas vide
+            //si ce n'est pas le cas on enregistre , on detruits les onformations dans $session et on le redirige vers la liste  
+
+        }
+
+        
+    }
+
+
     
     
 }

@@ -95,7 +95,7 @@
         <!-- Datatabless !-->
         <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script>
-            $('#myTable').DataTable( {
+            $('#saveProductionTable').DataTable( {
             language: {
             processing:     "Traitement en cours...",
             search:         "Rechercher&nbsp;:",
@@ -117,8 +117,13 @@
                 sortAscending:  ": activer pour trier la colonne par ordre croissant",
                 sortDescending: ": activer pour trier la colonne par ordre décroissant"
             }
-        }
-} );
+            },
+            columnDefs:[
+                { targets: 3, width: '153px' },
+            ]
+
+            
+        } );
         </script>
 
         
