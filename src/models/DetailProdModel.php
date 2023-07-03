@@ -4,6 +4,7 @@
         private int $qte;
         private int $id;
         private int $articleVenteID;
+		
         private int $productionID;
         
         public function __construct(){

@@ -14,10 +14,11 @@
         <!-- Custom fonts for this template-->
         <link href="<?=BASE_URL?>/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            href="//fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
+        <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
         <link href="<?=BASE_URL?>/public/css/sb-admin-2.css" rel="stylesheet">
 
     </head>
@@ -83,21 +84,43 @@
                 </div>
             </div>
         </div>
-        <!-- Bootstrap core JavaScript-->
+        <!-- Bootstrap  JavaScript-->
         <script src="<?=BASE_URL?>/public/vendor/jquery/jquery.min.js"></script>
         <script src="<?=BASE_URL?>/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="<?=BASE_URL?>/public/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
+        
+        <!--  scripts Pour Toutes les pages-->
         <script src="<?=BASE_URL?>/public/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="=<?=BASE_URL?>/public/vendor/chart.js/Chart.min.js"></script>
+        <!-- Datatabless !-->
+        <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script>
+            $('#myTable').DataTable( {
+            language: {
+            processing:     "Traitement en cours...",
+            search:         "Rechercher&nbsp;:",
+            lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
+            info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+            infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+            infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            infoPostFix:    "",
+            loadingRecords: "Chargement en cours...",
+            zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            emptyTable:     "Aucune donnée disponible dans le tableau",
+            paginate: {
+                first:      "Premier",
+                previous:   "Pr&eacute;c&eacute;dent",
+                next:       "Suivant",
+                last:       "Dernier"
+            },
+            aria: {
+                sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                sortDescending: ": activer pour trier la colonne par ordre décroissant"
+            }
+        }
+} );
+        </script>
 
-        <!-- Page level custom scripts -->
-        <script src="<?=BASE_URL?>/public/js/demo/chart-area-demo.js"></script>
-        <script src="<?=BASE_URL?>/public/js/demo/chart-pie-demo.js"></script>
+        
     </body>
 </html>

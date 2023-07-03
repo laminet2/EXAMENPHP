@@ -20,8 +20,13 @@ class ArticleController extends Controller{
         
         #dump($filtre);
 
-        if($filtre!=null){
-            $filtre=explode("-",$filtre)[1];
+        if($filtre!=null ){
+            $filtre=explode("-",$filtre);
+            if(count($filtre)==2){
+                $filtre=$filtre[1];
+            }else{
+                $filtre="articleConf";
+            }
         }else{
             $filtre="articleConf";
         }

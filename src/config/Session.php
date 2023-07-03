@@ -25,5 +25,12 @@ class Session{
         session_unset();
         session_destroy();
     }
+    public static function getRole(){
+        if(Self::isset('user')){
+            $user=self::get("user");
+            #dd($user->getRole());
+            return $user->getRole();
+        }return null;
+    }
 }
 ?>

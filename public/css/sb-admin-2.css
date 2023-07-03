@@ -50,9 +50,13 @@
   .section {
     position: relative;
   }
+  .sectionne{
+    height: 80vh;
+  }
   
   .section .section-center {
     position: absolute;
+    
     top: 50%;
     left: 0;
     right: 0;
@@ -203,7 +207,7 @@
     margin-top: 27px;
   }
   
-  .booking-form .submit-btn {
+  .booking-form .submit-btn ,.booking-form form .submit-btn{
     color: #fff;
     background-color: #f23e3e;
     font-weight: 400;
@@ -216,19 +220,19 @@
     -webkit-transition: 0.2s all;
     transition: 0.2s all;
   }
-  .booking-form div button.submit-btn{
+  .booking-form div .submit-btn.btn,.booking-form form .submit-btn.btn{
     width: 30%;
 
   }
-  .booking-form div button.submit-btn.bleue{
+  .booking-form div .submit-btn.bleue{
     background-color: var(--primary);
 
   }
-  .booking-form div button.submit-btn.vert{
+  .booking-form div .submit-btn.vert{
     background-color: var(--success);
 
   }
-  .booking-form div button.submit-btn:disabled {
+  .booking-form div .submit-btn:disabled ,.booking-form form .submit-btn:disabled {
     opacity: 0.9;
     color:white;
     background-color:var(--gray);

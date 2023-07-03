@@ -2,7 +2,7 @@
 use App\Config\Session;
 use App\Config\Help;
 ?>
-<div id="booking" class="section">
+<div id="booking" class="section sectionne">
 		<div class="section-center">
 			<div class="container">
 				<div class="row">
@@ -28,8 +28,7 @@ use App\Config\Help;
                                     <i class="fas fa-shopping-cart"></i>
                                         Article de Vente
                                     </a>
-                                    </div>
-								
+                                    </div>				
 							</div>
 							<div class="row">
 								<div class="col-md-3">
