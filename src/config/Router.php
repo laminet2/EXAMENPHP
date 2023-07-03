@@ -76,13 +76,18 @@ if($controller=="" or $controller=="Perdu"){
         }
     }else{
         //Ici il s'agit d'une url sans action alors on le redirige vers sa page concerné
-        #$controller->redirectByRole($_SESSION["user"]->getRole()??null);
+        $controller = new AuthController;
+        $controller->redirectByRole($_SESSION["user"]->getRole()??null);
     }
 } 
+  #$controller->logout();
   $controller = new AuthController;
-    
   $controller->login();
 
+
+
+
+  
   function instanceController($controller){
     switch ($controller) {
         case 'AuthController':

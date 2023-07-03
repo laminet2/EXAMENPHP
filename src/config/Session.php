@@ -13,7 +13,10 @@ class Session{
         $_SESSION[$key]=$value;
     }
     public static function get(string $key){
-        return $_SESSION[$key];
+        if(self::isset($key)){
+            return $_SESSION[$key];
+        }
+        return null;
     }
     public static function isset(string $key){
         return isset($_SESSION[$key]);

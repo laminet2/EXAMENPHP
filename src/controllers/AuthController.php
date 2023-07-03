@@ -16,7 +16,6 @@ public function __construct() {
 }
 public function login(){
     
-
     if($_POST==[]){
         //Help::dumpDie([]);
         $this->renderView("auth/login");

@@ -253,8 +253,12 @@
 
   }
 
-
-
+  /* Bar de progreesion */
+  
+  .horizontale-bar{
+    height: 10px;
+    
+  }
 *,
 *::before,
 *::after {

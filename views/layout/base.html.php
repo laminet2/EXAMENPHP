@@ -21,6 +21,9 @@
         <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
         <link href="<?=BASE_URL?>/public/css/sb-admin-2.css" rel="stylesheet">
 
+        
+        <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
+
     </head>
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -119,7 +122,9 @@
             }
             },
             columnDefs:[
-                { targets: 3, width: '153px' },
+                
+
+                { targets: 2, width: '50px' },
             ]
 
             

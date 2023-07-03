@@ -98,7 +98,7 @@ class ArticleController extends Controller{
                 }
             }
             if($_FILES["photo"]["error"]!=4){
-                dump($_FILES);
+                
                 $originalFileName = $_FILES['photo']['name'];
                 $fileExtension=explode(".",$originalFileName)[1];
                 #$fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);
