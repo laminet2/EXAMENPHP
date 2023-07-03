@@ -26,7 +26,6 @@ class ProductionController extends Controller{
         foreach ($tabObjets as $key=>$objet) {
             if($objet[1]->getId()==$articleID){
                 
-                
                 return $key;
             }
         }
@@ -151,12 +150,10 @@ class ProductionController extends Controller{
 
     public function save($filter=null){
 
-        if(!Session::isset("articleConfSelectionner") ){
-            if(Session::isset("articleConfSelectionner") && count(Session::get("articleConfSelelectionner"))==0 ){
-                $this->add();
+        if(!Session::isset("articleConfSelectionner") || count(Session::get("articleConfSelelectionner"))==0){
+
+                $this->redirect("ProductionController/add");
                 exit();
-            }        
-           
         }
 
         if(count($_POST)>0){
@@ -182,10 +179,14 @@ class ProductionController extends Controller{
 
 
     public function selectionTerminer(){
-        if(Session::isset("articleVenteSelelectionner") && count(Session::get("articleVenteSelelectionner"))==0){
-            $this->redirect("/ProductionController/save");
+
+        if(!Session::isset("articleVenteSelelectionner") || count(Session::get("articleVenteSelelectionner"))==0){
+
+            $this->redirect("ProductionController/save");
+            exit();
+
         }
-            if(isset($_POST["save"])){
+        if(isset($_POST["save"])){
 
                  //on retranche les qte de toutes articles conf
 
@@ -201,25 +202,21 @@ class ProductionController extends Controller{
 
                 //on redirige vers liste productions.
 
-                $articleConfSelectionner=Session::get("articleConfSelectionner");
-                foreach ($articleConfSelectionner as $key => $articleConf) {
-                    $articleConf[1]->updateOneAttributById($articleConf[1]->getId(),"qteStock",$articleConf[1]->getQteStock() - $articleConf[0]);
-                }
-        
-                $articleVenteSelectionner=Session::get("articleVenteSelectionner");
-                foreach ($articleVenteSelectionner as $key => $articleVente) {
-                    $articleVente[1]->updateOneAttributById($articleVente[1]->getId(),"qteStock",$articleVente[1]->getQteStock() + $articleVente[0] );
-                }
-        
-                Session::unset("articleConfSelectionner");
+                $this->productionModel->setObservation($_POST["observation"]??"");
+                
+                $this->productionModel->setDate(date("Y-m-d"));
+                $this->productionModel->insert(array_merge(Session::get("articleConfSelectionner"),Session::get("articleVenteSelectionner")));
 
-                $this->productionModel->setObservation($_POST["observation"]);
-                $this->productionModel->setDate();
+
+                Session::unset("articleConfSelectionner");
+                Session::unset("articleVenteSelectionner");
+                $this->redirect("ProductionController/add");
 
 
             }else{
-                $articlesSelectionner=array_merge(Session::get("articleConf"))
-                
+                $articlesSelectionner=array_merge(Session::get("articleConfSelectionner"),Session::get("articleVenteSelectionner")); 
+                $this->renderView("Production/form3",["articlesSelectionner"=>$articlesSelectionner]);
+                exit();
             }
                
 

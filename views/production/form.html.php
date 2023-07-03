@@ -34,12 +34,12 @@
 <div class=" container d-flex  justify-content-center p-4 ">        
         <div class="">
              <a type="button" class="btn btn-primary p-3" role="button" href="<?=BASE_URL?>/ProductionController/add">
-                Enregistrer Article Confection <span class="badge badge-light"></span>
+                Enregistrer Article Confection Utiliser <span class="badge badge-light"></span>
             </a>
         </div>
         <div class="horizontale-bar border border-primary mt-4 w-25"> </div>
         <div class="">
-            <button type="button" class="btn btn-outline-primary p-3" disabled>Enregisrer Articles de Vente</button>
+            <button type="button" class="btn btn-outline-primary p-3" disabled>Enregisrer Articles de Vente Produit</button>
         </div>
         <div class="horizontale-bar  mt-4 w-25  border border-primary"> </div>
 

@@ -44,4 +44,38 @@ class ProductionModel extends Model{
 		$this->date = $date;
 		return $this;
 	}
+	public function insert($articleSelectionner){
+        //$sql="select * from categorie where id=$id" ;Jamais
+        $sql="INSERT INTO $this->table (`id`, `date`,`observation`) VALUES (NULL,:date,:observation)";//Requete preparee
+        //prepare ==> requete avec parametres
+        $stm= self::$dataBase->prepare($sql);
+        $stm->execute(["date" => $this->date,"observation" => $this->observation]);
+        if($stm->rowCount()==1){
+			$productionId= self::$dataBase->lastInsertId();
+
+			foreach($articleSelectionner as $article){
+
+				//enregistrement des articles
+
+				if($article[1]->getType()=="articleConf"){
+					$newQte= $article[1]->getQteStock() - $article[0];
+				}else{
+					$newQte= $article[1]->getQteStock() + $article[0];
+
+					//enregistrement dans detailProd
+					$detailProd=new DetailProdModel;
+					$detailProd->setProductionID($productionId);
+					$detailProd->setArticleVenteID($article[1]->getId());
+					$detailProd->setQte($article[0]);
+					$detailProd->insert();
+
+				}
+				$article[1]->updateOneAttributById($article[1]->getId(),"qteStock",$newQte);
+				
+			};
+		} 
+    } 
+
+	
+	
 }

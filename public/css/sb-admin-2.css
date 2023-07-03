@@ -259,6 +259,11 @@
     height: 10px;
     
   }
+  #Observation{
+    border-radius: 5px;
+    border: 0;
+    height: 90px;
+  }
 *,
 *::before,
 *::after {

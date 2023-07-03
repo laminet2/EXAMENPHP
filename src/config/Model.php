@@ -71,10 +71,10 @@ public function executeSelect(string $sql,array $data=[],$single=false){
 
  public function updateOneAttributById($id,$filtre,$value):int{
     $sql="Update  $this->table set $filtre=:value where id=:Id ";
-    $stm= $this->dataBase->prepare($sql);
+    $stm= self::$dataBase->prepare($sql);
     $stm->execute([
                    "Id"=>$id,
-                    "value"=>$value   
+                    "value"=>$value
         ]);
     return  $stm->rowCount() ;
  }

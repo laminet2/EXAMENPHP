@@ -40,6 +40,20 @@
                 </div>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Gestion Production
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?=BASE_URL?>/ProductionController/add">
+                     <i class="fas fa-save" style=""></i>
+                    <span>Enregistrer une production</span></a>
+            </li>
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -89,11 +103,7 @@
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
+           
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">

@@ -26,12 +26,12 @@
 <div class=" container d-flex  justify-content-center p-4 ">        
         <div class="">
              <a type="button" class="btn btn-primary p-3" role="button" href="<?=BASE_URL?>/ProductionController/add">
-            Enregistrer Article Confection <span class="badge badge-light"></span>
+            Enregistrer Article Confection Utiliser<span class="badge badge-light"></span>
              </a>
         </div>
         <div class="horizontale-bar bg-primary mt-4 w-25"> </div>
         <div class="">
-            <a type="button" class="btn btn-primary p-3" role="button " href="<?=BASE_URL?>/ProductionController/save" >Enregisrer Articles de Vente</a>
+            <a type="button" class="btn btn-primary p-3" role="button " href="<?=BASE_URL?>/ProductionController/save" >Enregisrer Articles de Vente Produit</a>
         </div>
         <div class="horizontale-bar  mt-4 w-25  border border-primary"> </div>
 
@@ -65,7 +65,7 @@
                             </div>          
                             <div class="form-btn col-md-6  d-flex justify-content-end ">
                                <button type="submit" class="submit-btn btn bleue ml-5">Ajouter <i class="fas fa-plus"></i></button>
-                               <a name="" id="disabled" class="submit-btn pt-3 btn <?php echo(Session::isset("articleVenteSelectionner") && count(Session::get("articleVenteSelectionner"))!=0 ? "":"disabled") ?>" href="<?=BASE_URL ?>/ProductionController/selectionTerminer" role="button">Enregistrer <i class="fas fa-save"></i></a>
+                               <a name="" id="disabled" class="submit-btn pt-3 btn vert <?php echo(Session::isset("articleVenteSelectionner") && count(Session::get("articleVenteSelectionner"))!=0 ? "":"disabled") ?>" href="<?=BASE_URL ?>/ProductionController/selectionTerminer" role="button"> Suivant <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
             </form>

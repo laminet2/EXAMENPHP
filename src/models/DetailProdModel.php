@@ -44,4 +44,18 @@
 		$this->productionID = $productionID;
 		return $this;
 	}
+	public function setQte($qte){
+		$this->qte=$qte;
+	}
+	public function getQte(){
+		return $this->qte;
+	}
+	public function insert():int{
+        //$sql="select * from categorie where id=$id" ;Jamais
+        $sql="INSERT INTO $this->table (`id`, `qte`,`articleVenteID`,`productionID`) VALUES (NULL,:qte,:articleVenteID,:productionID)";//Requete preparee
+        //prepare ==> requete avec parametres
+        $stm= self::$dataBase->prepare($sql);
+        $stm->execute(["qte" => $this->qte,"articleVenteID" => $this->articleVenteID,"productionID"=> $this->productionID]);
+        return  $stm->rowCount() ;
+     }
 }
