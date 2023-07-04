@@ -1,20 +1,33 @@
 <ul class="navbar-nav backCustom sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center  justify-content-center " href="index.html">
-                
-                <div class="sidebar-brand-text  mx-3"><img src="<?=BASE_URL?>/public/img/logo.png" class="img-fluid  ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></div>
-            </a>
+            <div class="sidebar-brand h-25">
+
+            </div>                
+                <div class="sidebar-brand-text  mx-3"><img src="" class="img-fluid  ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></div>
+            
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+            <!--
             <li class="nav-item ">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                
+                    <?php use App\Config\Session;
+                    use App\Model\ResponsableModel;
+                     $user=new ResponsableModel;
+                    $user=Session::get("user");
+                    ?>
+                    
+                    <a class="nav-link user-connect dropdown-toggle bg-success text-monospace font-weight-bold text-white" href="#" id="userDropdown" role="button"
+                        aria-haspopup="true" data-toggle="modal" data-target="#logoutModal">
+                        <?=$user->getNom()." ".$user->getPrenom() ?>
+                        <img class="img-profile rounded-circle ml-2   "
+                        src= "<?= BASE_URL."/"."public/img/".$user->getPhoto() ?>">
+                    </a>
+
             </li>
+                -->
 
             <!-- Divider -->
             <hr class="sidebar-divider">

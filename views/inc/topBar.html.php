@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top ">
 
      <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle  ml-0">
@@ -20,12 +20,21 @@
               $user=new ResponsableModel;
               $user=Session::get("user");
          ?>
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+        
+        <a class="nav-link user-connect dropdown-toggle rounded text-monospace font-weight-bold  rounded" href="#" id="userDropdown" role="button"
             aria-haspopup="true" data-toggle="modal" data-target="#logoutModal">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 big"><?=$user->getNom()." ".$user->getPrenom() ?></span>
+            <span class="mr-2 d-none d-lg-inline "><?=$user->getNom()." ".$user->getPrenom() ?></span>
             <img class="img-profile rounded-circle"
                   src= "<?= BASE_URL."/"."public/img/".$user->getPhoto() ?>">
-        </a>
+        </a> 
+        
+          <!--          
+        <a class="nav-link user-connect dropdown-toggle bg-success " href="#" id="userDropdown" role="button"
+            aria-haspopup="true" data-toggle="modal" data-target="#logoutModal">
+            <?=$user->getNom()." ".$user->getPrenom() ?>
+            <img class="img-profile rounded-circle ml-2   "
+                src= "<?= BASE_URL."/"."public/img/".$user->getPhoto() ?>">
+        </a> -->
         </li>
 
         </ul>

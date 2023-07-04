@@ -47,7 +47,8 @@
                 
                 <!-- Topbar -->
                 
-                <?= $topBar ?>
+                 <?= $topBar ?> 
+
                 <!-- End of Topbar -->
 
                 <!-- Content -->

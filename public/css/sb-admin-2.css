@@ -43,9 +43,10 @@
 }
 
 .backCustom{
-  background: #00bf8f;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #001510, #00bf8f);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #001510, #00bf8f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   }
   .section {
     position: relative;
@@ -252,6 +253,17 @@
 
 
   }
+  /* Logo Menu */
+  .sidebar-brand{
+    background: url(../img/logo.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat
+    
+    ;
+
+  }
+  
 
   /* Bar de progreesion */
   
@@ -3220,19 +3232,22 @@ input[type="button"].btn-block {
   white-space: nowrap;
 }
 
-.dropdown-toggle::after {
-  display: inline-block;
-  margin-left: 0.255em;
-  vertical-align: 0.255em;
-  content: "";
-  border-top: 0.3em solid;
-  border-right: 0.3em solid transparent;
-  border-bottom: 0;
-  border-left: 0.3em solid transparent;
-}
+
 
 .dropdown-toggle:empty::after {
   margin-left: 0;
+}
+#userDropdown{
+
+  color: #000;
+}
+#userDropdown:hover{
+  color: gray;
+}
+
+.user-connect img{
+  height: 10em;
+  width: 14rem;
 }
 
 .dropdown-menu {
