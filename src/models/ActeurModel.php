@@ -78,5 +78,45 @@ public function __construct(){
 		$this->photo = $photo;
 		return $this;
 	}
+
+/**
+ * Get the value of addresse
+ */ 
+public function getAddresse()
+{
+return $this->addresse;
+}
+
+/**
+ * Set the value of addresse
+ *
+ * @return  self
+ */ 
+public function setAddresse($addresse)
+{
+$this->addresse = $addresse;
+
+return $this;
+}
+
+/**
+ * Get the value of telephone
+ */ 
+public function getTelephone()
+{
+return $this->telephone;
+}
+
+/**
+ * Set the value of telephone
+ *
+ * @return  self
+ */ 
+public function setTelephone($telephone)
+{
+$this->telephone = $telephone;
+
+return $this;
+}
 }
 ?>

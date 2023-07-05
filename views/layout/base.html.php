@@ -17,9 +17,10 @@
             href="//fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
+        <link href="<?=BASE_URL?>/public/css/sb-admin-2.css" rel="stylesheet">
+
         <!-- Custom styles for this template-->
         <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-        <link href="<?=BASE_URL?>/public/css/sb-admin-2.css" rel="stylesheet">
 
         
         <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
@@ -98,6 +99,7 @@
 
         <!-- Datatabless !-->
         <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
         <script>
             $('#saveProductionTable').DataTable( {
             language: {
@@ -131,7 +133,50 @@
             
         } );
         </script>
+         <script>
+            $('#saveVenteTable').DataTable( {
+                dom: 'fl<"toolbar">rtip',
+                initComplete: function(){
+                $("div.toolbar")
+                    .html('<a type="button" class="btn toolbar btn-primary ml-3 mb-3" id="newClient">Nouveau Client  <i class="fa fa-plus-circle ml-2" aria-hidden="true"></i> </a>');
+                $("a.toolbar")
+                    .on("click",function() { 
+                        $('#exampleModalCenter').modal('show');    
+                                
+                    }) 
+                },
+                    
+                language: {
+                processing:     "Traitement en cours...",
+                search:         "Rechercher&nbsp;:",
+                lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
+                info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                infoPostFix:    "",
+                loadingRecords: "Chargement en cours...",
+                zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                emptyTable:     "Aucune donnée disponible dans le tableau",
+                paginate: {
+                    first:      "Premier",
+                    previous:   "Pr&eacute;c&eacute;dent",
+                    next:       "Suivant",
+                    last:       "Dernier"
+                },
+                aria: {
+                    sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                    sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                }
+                },
+                columnDefs:[
+                    { targets: 1, width: '10%' },
 
-        
+                    { targets: 3, width: '30%' },
+
+                ],
+                
+            } );
+        </script>
+
     </body>
 </html>

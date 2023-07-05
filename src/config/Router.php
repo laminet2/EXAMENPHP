@@ -5,12 +5,14 @@ use App\Config\Session;
 use App\Controller\ArticleController;
 use App\Controller\AuthController;
 use App\Controller\ActeurController;
+use App\Controller\PayementController;
 use App\Controller\ProductionController;
+use App\Controller\VenteController;
 
 #phpinfo();
 #echo("coucou");
 $Interdit=['getId','getPassword'];
-$listesControllers=["AuthController","ActeurController","ArticleController","ProductionController"];
+$listesControllers=["AuthController","ActeurController","ArticleController","VenteController","PayementController","ProductionController"];
 #var_dump($_SESSION);
 
 if(isset($_POST["route"])){
@@ -99,6 +101,10 @@ if($controller=="" or $controller=="Perdu"){
             return new ArticleController();
         case 'ProductionController':
             return new ProductionController();
+        case 'VenteController':
+            return new VenteController();
+        case "PayementController":
+            return new PayementController();
         default:
             # code...
             break;

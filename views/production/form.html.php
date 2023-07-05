@@ -79,8 +79,8 @@
                                <a name="" id="disabled" class="submit-btn pt-3 btn vert <?php echo(Session::isset("articleConfSelectionner") && count(Session::get("articleConfSelectionner"))!=0 ? "":"disabled") ?>" href="<?=BASE_URL ?>/ProductionController/save" role="button" >Suivant <i class="fas fa-chevron-right"></i></a>
                             </div>
 
-                            </form>
                         </div>
+             </form>
         </div>
     </div>
 </div>

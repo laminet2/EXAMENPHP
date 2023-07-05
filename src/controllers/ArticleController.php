@@ -42,7 +42,7 @@ class ArticleController extends Controller{
             // }
             $categories=$categorieModel->findBy("type",$filtre);
 
-            $categorie= $categories==false?[]:$categories;
+            $categorie= $categories==false?[] : $categories;
             
 
             $this->renderView("article/form",["categories"=>$categorie,"filtre"=>$filtre]);
