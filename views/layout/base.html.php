@@ -17,13 +17,12 @@
             href="//fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
-        <link href="<?=BASE_URL?>/public/css/sb-admin-2.css" rel="stylesheet">
 
         <!-- Custom styles for this template-->
         <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
-        
         <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
+        <link href="<?=BASE_URL?>/public/css/sb-admin-2.css" rel="stylesheet">
 
     </head>
     <body id="page-top">
@@ -141,7 +140,7 @@
                     .html('<a type="button" class="btn toolbar btn-primary ml-3 mb-3" id="newClient">Nouveau Client  <i class="fa fa-plus-circle ml-2" aria-hidden="true"></i> </a>');
                 $("a.toolbar")
                     .on("click",function() { 
-                        $('#exampleModalCenter').modal('show');    
+                        $('#ModalSaveClientSinceVente').modal('show');    
                                 
                     }) 
                 },
@@ -169,11 +168,16 @@
                 }
                 },
                 columnDefs:[
-                    { targets: 1, width: '10%' },
+                    { targets: 0, width: '5%' },
+                    { targets: 1, width: '2%' },
 
-                    { targets: 3, width: '30%' },
+
+
+                    { targets: 2, width: '35%' },
 
                 ],
+                
+                
                 
             } );
         </script>

@@ -3270,7 +3270,15 @@ input[type="button"].btn-block {
   border-radius: 0.35rem;
 }
 
-
+table#saveVenteTable thead th{
+  background-color: #000000
+  ;color: white;
+}
+table#saveVenteTable thead th, table#saveVenteTable tbody td {
+  vertical-align: middle;
+  text-align: center;
+  
+}
 .dropdown-menu-left {
   right: auto;
   left: 0;

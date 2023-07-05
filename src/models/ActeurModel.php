@@ -118,5 +118,16 @@ $this->telephone = $telephone;
 
 return $this;
 }
+
+public function insert($data=null):int{
+	
+	$data=!null?extract($data):"" ;
+
+	$sql="INSERT INTO $this->table (`id`, `nom`,`prenom`,`addresse`,`telephone`,`observation`,`type`,`photo`,`role`,`salaire`,`login`,`motDePasse`) VALUES (NULL,:nom,:prenom,:addresse,:telephone,:observation,:type,:photo,:role,:salaire,:login,:motDePasse)";//Requete preparee
+	//prepare ==> requete avec parametres
+	$stm= self::$dataBase->prepare($sql);
+	$stm->execute(["nom" => $this->nom,"type" => $this->type,"prenom"=>$this->prenom,"addresse"=> $this->addresse,"telephone"=> $this->telephone,"observation"=> ($this->type=="Client")?$observation:null,"photo"=>$this->photo,"role"=>($this->type=="Responsable")?$role:null,"login"=>($this->type=="Responsable")?$login:null,"motDePasse"=>($this->type=="Responsable")?$motDePasse:null,"salaire"=>($this->type=="Responsable")?$salaire:null]);
+	return  $stm->rowCount() ;
+ }
 }
 ?>

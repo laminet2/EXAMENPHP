@@ -79,5 +79,13 @@ public function executeSelect(string $sql,array $data=[],$single=false){
     return  $stm->rowCount() ;
  }
 
+
+/**
+ * Get the value of dataBase
+ */ 
+public static function getDataBase()
+{
+return self::$dataBase;
+}
 }
 ?>

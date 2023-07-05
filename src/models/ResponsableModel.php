@@ -98,5 +98,7 @@ class ResponsableModel extends ActeurModel{
                                "password"=>$password,  
                               ],true) ;
      }
+
+     
 }
 ?>

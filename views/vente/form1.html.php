@@ -9,7 +9,7 @@
             $controller->redirectByRole(Session::get("user")??null);
         }
 ?>
-<div class="ml-3">
+<div class="ml-3 container">
 	<div class="row">
         <?php if($errors!=[]): ?>
             <div class="alert alert-danger" role="alert">
@@ -53,47 +53,87 @@
                     <tbody>
                     <?php  foreach($clients as $client): ?>
                          <tr>
-                            <td>
-                                <img class="img-profile rounded-circle"
+                            <td class=" " >
+                                <img class="img-profile rounded-circle " style="height:5rem"
                                  src= "<?= BASE_URL."/"."public/img/".$client->getPhoto() ?>">
                             </td>
                             <td>
                                 <?= $client->getId() ?>
                             </td>
                             <td>
-                                <?= $client->getNom()." ".$client->getPrenom ?>
+                                <?= $client->getNom()." ". $client->getPrenom() ?>
                             </td>
                             
                             <td>
-                                <?=$client->getAdresse()?>
+                                <?= $client->getAddresse() ?>
                             </td>
-                            <td>
-                                <a name="" id="" class="btn btn-primary" href="<?=BASE_URL?>/VenteController/clientSelect/client-<?=$Client->getId()?>" role="button">Selectionner</a>
+                            <td class="" >
+                                <a name="" id="" class="btn btn-primary" href="<?=BASE_URL?>/VenteController/clientSelect/client-<?=$client->getId() ?>" role="button">Selectionner</a>
                             </td>
                         </tr>
                     <?php endforeach ?> 
-                        <tr>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                5
-                            </td>
-                            <td>
-                                TRAORE KAMIYA HAMED LAMINE
-                            </td>
-                            <td>
-                                MEDINA RUE 13
-                            </td>
-                            <td>
-                                BUTTON
-                            </td>
-                        </tr>
-                       
+                        
                     </tbody>
                 </table>
             </div>
         </div>       
+</div>
+<!-- Modal -->
+<div class="modal fade" id="ModalSaveClientSinceVente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Enregistrer Client</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="booking-form">
+        <form action="<?=BASE_URL?>/VenteController/saveClient" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+                <div class="row">
+                        
+                     <div class=" form-group col-6 ">
+                            <label for="nom">Nom</label>
+                            <input type="text" name="nom" id="nom">
+                     </div>
+                     <div class="form-group col-6 ">
+                            <label for="prenom">Prenom</label>
+                            <input type="text" name="prenom" id="prenom">
+                     </div> 
+                </div>
+                <div class="row">
+                        
+                        <div class="form-group col-6 ">
+                               <label for="tel">Telephone</label>
+                               <input type="text" name="telephone" id="tel">
+                        </div>
+                        <div class="form-group col-6 ">
+                               <label for="adresse">Adresse</label>
+                               <input type="text" name="addresse" id="adresse">
+                        </div> 
+                </div>
+                <div class="row w-100 ">
+                    <div class="form-group col-12 ">
+                        <label for="observation">Observation</label> <br>
+                        <textarea name="observation" class="w-100" id="observation" cols="12" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="photo"></label>
+                    <input type="file" name="photo" id="photo">
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+    </div>
+  </div>
 </div>
 
 
