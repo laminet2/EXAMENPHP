@@ -21,11 +21,11 @@
 <div class="ml-3">
 	<div class="row">
         <?php if($errors!=[]): ?>
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger w-100" role="alert">
                 <?=implode("<br>",$errors) ?>
             </div>
         <?php elseif($success!=[]): ?>
-            <div class="p-3 mb-2 bg-success text-white">
+            <div class="p-3 mb-2 bg-success w-100 text-white">
                 <?= $success ?>
             </div>
         <?php endif ?>   

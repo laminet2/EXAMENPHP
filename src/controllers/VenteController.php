@@ -128,7 +128,7 @@ class VenteController extends Controller{
         $this->renderView("vente/form1",["clients"=>$clients]);
     }
 
-
+    
     public function saveClient(){
         if($_POST!=[]){
 
@@ -253,5 +253,13 @@ class VenteController extends Controller{
         $this->redirect("VenteController/selectArticleVente");
             
     } 
+    public function index($filter=null){
+        //si tu rentre dans cette fonction avec un filter ses pour afficher details
+        //si tu rentre avec un post ses pour filtrer
+        //si tu rentre sans rien alors ses pour juste afficher
+
+        $ventes=$this->venteModel->find();
+        $this->renderview("vente/liste",["ventes"=>$ventes]);
+    }
     
 }

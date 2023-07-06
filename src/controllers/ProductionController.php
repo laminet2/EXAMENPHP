@@ -150,10 +150,11 @@ class ProductionController extends Controller{
 
     public function save($filter=null){
 
-        if(!Session::isset("articleConfSelectionner") || count(Session::get("articleConfSelelectionner"))==0){
+        if(!Session::isset("articleConfSelectionner") || (Session::isset("articleConfSelectionner") && count(Session::get("articleConfSelectionner"))==0)){
 
                 $this->redirect("ProductionController/add");
                 exit();
+                
         }
 
         if(count($_POST)>0){
@@ -177,10 +178,10 @@ class ProductionController extends Controller{
         $this->renderView('production/form2',["articlesVente"=>$articlesVente]);
     }
 
-
+    
     public function selectionTerminer(){
-
-        if(!Session::isset("articleVenteSelelectionner") || count(Session::get("articleVenteSelelectionner"))==0){
+        
+        if(!Session::isset("articleVenteSelectionner") || (Session::isset("articleVenteSelectionner") && count(Session::get("articleVenteSelectionner"))==0) ) {
 
             $this->redirect("ProductionController/save");
             exit();
@@ -210,6 +211,7 @@ class ProductionController extends Controller{
 
                 Session::unset("articleConfSelectionner");
                 Session::unset("articleVenteSelectionner");
+                Session::set("success","La Production a ete bien renregistrer");
                 $this->redirect("ProductionController/add");
 
 
