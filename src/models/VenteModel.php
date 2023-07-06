@@ -155,4 +155,40 @@ class VenteModel extends Model{
 
         return $this;
     }
+    public function insert($panier){
+        //$sql="select * from categorie where id=$id" ;Jamais
+        $sql="INSERT INTO `vente` (`id`, `qteTotale`, `date`, `montant`, `observation`, `statut`, `clientID`) VALUES (NULL, ':qteTotale', ':date', ':montant', ':observation', ':statut', ':clientID')";//Requete preparee
+        //prepare ==> requete avec parametres
+        $stm= self::$dataBase->prepare($sql);
+        $stm->execute(["date" => $this->date,"observation" => $this->observation,"qteTotale"=>$this->qteTotale,"montant"=>$this->montant,"statut"=>$this->statut,"clientID",$this->clientID]);
+        if($stm->rowCount()==1){
+			$venteID= self::$dataBase->lastInsertId();
+
+            //enregistrement Payement seulement au cas ou payement>0
+            if(isset($_POST["payement"]) && $_POST["payement"]>0){
+                $montant=$_POST["payement"];
+                $payement=new PayementModel;
+                $payement->setDate(date("Y-m-d"));
+                $payement->setMontant($montant);
+                $payement->setVenteID($venteID);
+            }
+
+			foreach($panier as $article){
+
+				//enregistrement des articles
+					$newQte= $article[1]->getQteStock() - $article[0];
+
+					//enregistrement dans detailVente
+					$detailVente=new DetailVenteModel;
+					$detailVente->setVenteID($venteID);
+					$detailVente->setQte($article[0]);
+                    $detailVente->setArticleVenteID($article[1]->getId());
+                    $detailVente->setPrix($article[1]->setPrixVente());
+					$detailVente->insert();
+				    $article[1]->updateOneAttributById($article[1]->getId(),"qteStock",$newQte);
+            }
+				
+		};
+		
+    } 
 }

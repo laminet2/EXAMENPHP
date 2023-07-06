@@ -50,22 +50,25 @@
                     <thead>
                          <tr>
                              <th>Libelle</th>
-                             <th>Type</th> 
+                             <th>Prix</th> 
                              <th>Quantite </th>          
                           </tr>
                     </thead>
                                     
                     <tbody>
-                        <?php  foreach($articlesSelectionner as $articleSelectionner): ?>
+                        <?php  foreach(($_SESSION["panier"])["articleVente"] as $article): ?>
                             <tr>
                                 <td>
-                                    <?= $articleSelectionner[1]->getLibelle() ?>
+                                    <?= $article[1]->getLibelle() ?>
                                 </td>
                                 <td>
-                                    <?= $articleSelectionner[1]->getType()=="articleConf"? "Article de Confection" : "Article de Vente" ?>
+                                    <?= $article[1]->getPrixVente() ?>
                                 </td>
                                 <td>
-                                    <?= $articleSelectionner[0] ?>
+                                    <?= $article[0] ?>
+                                </td>
+                                <td>
+                                    <?= $article[0]*$article[1]->getPrixVente() ?>
                                 </td>
                             </tr>
                         <?php endforeach ?> 

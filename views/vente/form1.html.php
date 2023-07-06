@@ -12,23 +12,17 @@
 <div class="ml-3 container">
 	<div class="row">
         <?php if($errors!=[]): ?>
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger w-100" role="alert">
                 <?=implode("<br>",$errors) ?>
             </div>
         <?php elseif($success!=[]): ?>
-            <div class="p-3 mb-2 bg-success text-white">
+            <div class="p-3 mb-2 bg-success w-100 text-white">
                 <?= $success ?>
             </div>
         <?php endif ?>   
     </div>
 </div>
-<div class=" container d-flex  justify-content-center p-4 ">        
-        <div class="row">
-            <h1>
-                ETAPE 1 / 3
-            </h1>
-        </div>
-</div>
+
    
 
 <div class="card shadow mb-4">
@@ -42,9 +36,12 @@
                              <th>id</th>
 
                              <th>Nom & Prenom</th> 
+                             <th>
+                                Telephone
+                             </th>
 
                              <th>Adresse</th>
-
+                             <th>Observation</th>            
                              <th>Action</th>       
 
                           </tr>
@@ -65,10 +62,17 @@
                             </td>
                             
                             <td>
+                                <?=$client->getTelephone() ?>
+                            </td>
+                            
+                            <td>
                                 <?= $client->getAddresse() ?>
                             </td>
+                            <td>
+                                <?=$client->getObservation() ?>
+                            </td>
                             <td class="" >
-                                <a name="" id="" class="btn btn-primary" href="<?=BASE_URL?>/VenteController/clientSelect/client-<?=$client->getId() ?>" role="button">Selectionner</a>
+                                <a name="" id="" class="btn btn-primary" href="<?=BASE_URL?>/VenteController/selectClient/client-<?=$client->getId() ?>" role="button">Selectionner <i class="fas fa-external-link-alt"></i></a>
                             </td>
                         </tr>
                     <?php endforeach ?> 

@@ -5,7 +5,7 @@ class DetailVenteModel extends Model{
     private $qte;
     private  $prix;
     private $articleVenteID;
-    private $veneID;
+    private $venteID;
 
     public function __construct(){
         parent::__construct();
@@ -92,23 +92,24 @@ class DetailVenteModel extends Model{
         return $this;
     }
 
-    /**
-     * Get the value of veneID
-     */ 
-    public function getVeneID()
-    {
-        return $this->veneID;
-    }
-
-    /**
-     * Set the value of veneID
-     *
-     * @return  self
-     */ 
-    public function setVeneID($veneID)
-    {
-        $this->veneID = $veneID;
-
-        return $this;
+  
+	 
+	public function getVenteID() {
+		return $this->venteID;
+	}
+	
+	/**
+	 * @param mixed $venteID 
+	 * @return self
+	 */
+	public function setVenteID($venteID): self {
+		$this->venteID = $venteID;
+		return $this;
+	}
+    public function insert(){
+        $sql="INSERT INTO `detailvente` (`id`, `articleVenteID`, `qte`, `venteID`, `prix`) VALUES (NULL, ':articleID', ':qte', ':venteID', ':prix')";
+        $stm= self::$dataBase->prepare($sql);
+        $stm->execute(["articleID"=>$this->articleVenteID,"qte"=>$this->qte,"venteID"=>$this->venteID,"prix"=>$this->prix]);
+        
     }
 }

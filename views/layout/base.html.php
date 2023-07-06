@@ -171,10 +171,10 @@
                     { targets: 0, width: '5%' },
                     { targets: 1, width: '2%' },
 
-
-
-                    { targets: 2, width: '35%' },
-
+                    { targets: 2, width: '25%' },
+                    { targets: 5, width: '25%' },
+                    { targets: 6, width: '14%' },
+                    
                 ],
                 
                 

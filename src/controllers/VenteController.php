@@ -21,16 +21,96 @@ class VenteController extends Controller{
         $this->clientModel = new ClientModel;
     }
 
+    function sommeArticleVente(){
+        $somme=0;
+        if(isset(Session::get("panier")["articleVente"])){
+            foreach(Session::get("panier")["articleVente"] as $articleVente){
+                $somme+=$articleVente[0]*$articleVente[1]->getPrixVente();
+            }
+        }
+        return $somme;
+    }
+    public function selectionTerminer(){
+        if(Session::isset("panier")){
+            $panier=Session::get("panier");
+            if(isset($panier["articleVente"])){
+                $articleVente=$panier["articleVente"];
+                if($articleVente!=[] && isset($_POST["payement"])){
+                    //A partir de la les test sont fini au peu effectuer une operation de finition pour le payement
+                    extract($_POST);
+
+                    //on recherche la quantite totale
+                    $qteTotale=0;
+                    foreach ($$articleVente as $article) {
+                        # code...
+                        $qteTotale+=$article[0];
+                    }
+                    $this->venteModel->setQteTotale($qteTotale);
+                    $this->venteModel->setMontant($this->sommeArticleVente());
+                    $this->venteModel->setDate(date("Y-m-d"));
+                    $this->venteModel->setClientID($panier["client"]->getId());
+                    $this->venteModel->setStatut(($this->sommeArticleVente()>$payement??0)?false:true);
+                    $this->venteModel->setObservation($observation??"");
+
+                    $this->venteModel->insert($panier);
+                    Session::unset("panier");
+                    Session::set("success","vente enregistrer avec success");
+                    $this->renderView("vente/form1");
+                    exit();
+                }
+                
+
+            }
+            
+            
+
+        }$this->redirect("VenteController/selectArticleVente");
+        
+       
+
+    }
+
+    public function selectArticleVente(){
+        if(!Session::isset("panier")){
+            $this->redirect("VenteController/selectClient");
+            exit();
+        }
+        if($_POST!=[]){
+            if(isset($_POST["articleVenteID"])){
+
+                $this->saveInPanierarticleVenteSelectionner();
+
+            }else{
+                $erreurs["articleVenteID"]="Selectionner un article Vente avant de soummetre un ajout";
+                Session::set("erreurs",$erreurs);
+            }
+            
+        }
+        //Select somme quantite
+        $somme=$this->sommeArticleVente();
+
+       
+        $articlesVente=$this->articleVenteModel->findBy("type","articleVente");
+        $this->renderView("vente/form2",["articlesVente"=>$articlesVente,"somme"=>$somme]);
+    }
+
     public function selectClient($filter=null){
         if($filter!=null ){
 
             $filter=explode("-",$filter);
+
             if( count($filter)==2 &&  ctype_digit($filter[1]) ){
+                //filter pour selecetionner un client
 
                 $client=$this->clientModel->findBy("type","client",true);
                 if($client!=false){
-                    Session::set("clientSelectionner",$client);
+                    $panier=[];
+                    $panier["client"]=$client;
+                    Session::set("panier",$panier);
+                    
                     //redirectSelectArticleVente
+                    $this->selectArticleVente();
+                    exit();
                 }
             }
         }
@@ -38,6 +118,8 @@ class VenteController extends Controller{
         $clients=$this->clientModel->findBy('type',"client");
         $this->renderView("vente/form1",["clients"=>$clients]);
     }
+
+
     public function saveClient(){
         if($_POST!=[]){
 
@@ -88,13 +170,79 @@ class VenteController extends Controller{
     }
 
     public function annulerVente(){
-        if(Session::isset("clientSelectionner")){
-            Session::unset("clientSelectionner");
-        }
-        if(Session::isset("articleVenteSelectionnerZoneVente")){
-            Session::unset("articleVenteSelectionnerZoneVente");
+        
+        if(Session::isset("panier")){
+            Session::unset("panier");
         }
 
         $this->redirect("VenteController/selectClient");
     }
+    public function IdExiste($articleID,$tabObjets){
+        foreach ($tabObjets as $key=>$objet) {
+            if($objet[1]->getId()==$articleID){
+                return $key;
+            }
+        }
+        return null;
+    }
+    public function saveInPanierarticleVenteSelectionner(){
+
+        #dd("article".$type."ID");
+
+        $qteChoisieBefore=0;
+
+        $panier=Session::get("panier");
+
+        if(isset($panier["articleVente"])){
+
+            $articleSelectionner=$panier["articleVente"];
+
+            $key=$this->IdExiste($_POST["articleVenteID"],$articleSelectionner);
+            
+            if($key !== null ){
+                $qteChoisieBefore=$articleSelectionner[$key][0];
+            }
+
+        }else{
+            $articleSelectionner=[];
+
+        }
+        $articleModel=new ArticleVenteModel;
+        $articleModel= $articleModel->findBy("id",$_POST["articleVenteID"],true);
+        #dd($articleConf);
+        if($articleModel->getQteStock() >= $qteChoisieBefore + intval( $_POST["qte"])){
+
+            if(isset($key)){
+
+                $articleSelectionner[$key]=[intval($_POST["qte"]) + $qteChoisieBefore,$articleModel];
+
+            }else{
+                $articleSelectionner[]=[intval($_POST["qte"])+$qteChoisieBefore,$articleModel];
+            }
+            $panier["articleVente"]=$articleSelectionner;
+            Session::set("panier",$panier);
+        }else{
+            $erreurs["qte"]="Les quantites selectionner sont beaucoup trop importante !!!,  En Stock il n'y a que ".$articleModel->getQteStock()."  ".$articleModel->getLibelle()."  Vous a en avez selectionner "." ".$qteChoisieBefore;
+            Session::set("erreurs",$erreurs);
+        }  
+    }
+    public function deleteArticleSelect($filter){
+        $panier=Session::get("panier") ?? [];
+        if(isset($panier["articleVente"]) ){
+            $filter=explode("-",$filter);
+            if(count($filter)==2){
+
+                $key= $this->IdExiste($filter[1],$panier["articleVente"]);
+                if($key!== null){
+
+                    unset($panier["articleVente"][$key]);
+                    Session::set("panier",$panier);
+                }
+            }
+
+        }
+        $this->redirect("VenteController/selectArticleVente");
+            
+    } 
+    
 }
