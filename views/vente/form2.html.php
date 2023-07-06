@@ -23,11 +23,7 @@
         <?php endif ?>   
     </div>
 </div>
-<div class=" container d-flex  justify-content-center p-4 ">        
-        <div class="row">
-            Etape 2/3
-        </div>
-</div>
+
 
 <div id="booking" class="section">
 	<div class="section ">          
@@ -51,6 +47,12 @@
             </div>
         </div>
     <div>
+</div>
+<!--Bouton annuler vente -->
+<div class="row container mb-2">
+    <a type="button" role="button" href="<?=BASE_URL?>/VenteController/annulerVente" class="btn btn-danger">
+        Annuler Vente <span class="badge badge-light"><i class="fas fa-times-circle"></i></span>
+    </a>
 </div>
 
 <div class="booking-form p-4">           

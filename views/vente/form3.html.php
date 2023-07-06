@@ -31,14 +31,14 @@
 </div>
 <!--Bouton annuler vente -->
 <div class="row container mb-2">
-    <a type="button" role="button" class="btn btn-danger">
+    <a type="button" role="button" href="<?=BASE_URL?>/VenteController/annulerVente" class="btn btn-danger">
         Annuler Vente <span class="badge badge-light"><i class="fas fa-times-circle"></i></span>
     </a>
 </div>
 <div id="booking" class="section">
 	<div class="section ">            
         <div class="booking-form p-4 w-100 ">           
-            <form class="" action="<?=BASE_URL?>/ProductionController/selectionTerminer"  method="Post" >             
+            <form class="" action="<?=BASE_URL?>/VenteController/selectionTerminer"  method="Post" >             
                     <div class="form-group row w-100  justify-content-between ">
                         <div class="row col-6">
                         <div class="form-outline col-6 ">
@@ -54,8 +54,8 @@
                         
                        
                         <div class="form-btn col-md-6  d-flex justify-content-end ">
-                               <button  class="submit-btn btn bleue ml-5">Precedent <i class="fas fa-chevron-left"></i></button>
-                               <a name="" type="submit" id="disabled" class="submit-btn pt-3 btn btn-danger" href="<?=BASE_URL ?>/ProductionController/selectionTerminer" role="button"> Enregistrer  <i class="fas fa-save"></i></a>
+                                <a name="" type="submit" id="disabled" class="submit-btn pt-3 btn bleue" href="<?=BASE_URL ?>/VenteController/selectArticleVente" role="button"><i class="fas fa-chevron-left"></i>  Precedent</a>
+                               <button  class="submit-btn btn btn-danger  "> Enregistrer <i class="fas fa-save"></i> </i></button>
                             </div>
                     </div>
             </form>
@@ -66,29 +66,34 @@
        <div class="card-body">
             <div class="table-responsive ">
                  <table class="table table-bordered" id="saveProductionTable" width="100%" cellspacing="0">
-                    <thead>
+                 <thead>
                          <tr>
                              <th>Libelle</th>
-                             <th>Type</th> 
-                             <th>Quantite </th>          
+                             <th>Prix</th> 
+                             <th>Quantite </th>       
+                             <th>Montant</th>   
                           </tr>
                     </thead>
                                     
                     <tbody>
-                        <?php  foreach($articlesSelectionner as $articleSelectionner): ?>
+                        <?php  foreach(($_SESSION["panier"])["articleVente"] as $article): ?>
                             <tr>
                                 <td>
-                                    <?= $articleSelectionner[1]->getLibelle() ?>
+                                    <?= $article[1]->getLibelle() ?>
                                 </td>
                                 <td>
-                                    <?= $articleSelectionner[1]->getType()=="articleConf"? "Article de Confection" : "Article de Vente" ?>
+                                    <?= $article[1]->getPrixVente() ?>
                                 </td>
                                 <td>
-                                    <?= $articleSelectionner[0] ?>
+                                    <?= $article[0] ?>
+                                </td>
+                                <td>
+                                    <?= $article[0]*$article[1]->getPrixVente() ?>
                                 </td>
                             </tr>
                         <?php endforeach ?> 
                     </tbody>
+                    
                 </table>
             </div>
         </div>       

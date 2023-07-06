@@ -107,7 +107,7 @@ class DetailVenteModel extends Model{
 		return $this;
 	}
     public function insert(){
-        $sql="INSERT INTO `detailvente` (`id`, `articleVenteID`, `qte`, `venteID`, `prix`) VALUES (NULL, ':articleID', ':qte', ':venteID', ':prix')";
+        $sql="INSERT INTO `detailvente` (`id`, `articleVenteID`, `qte`, `venteID`, `prix`) VALUES (NULL, :articleID, :qte, :venteID, :prix)";
         $stm= self::$dataBase->prepare($sql);
         $stm->execute(["articleID"=>$this->articleVenteID,"qte"=>$this->qte,"venteID"=>$this->venteID,"prix"=>$this->prix]);
         

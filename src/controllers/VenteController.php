@@ -34,14 +34,19 @@ class VenteController extends Controller{
         if(Session::isset("panier")){
             $panier=Session::get("panier");
             if(isset($panier["articleVente"])){
+
                 $articleVente=$panier["articleVente"];
-                if($articleVente!=[] && isset($_POST["payement"])){
-                    //A partir de la les test sont fini au peu effectuer une operation de finition pour le payement
+                if($articleVente!=[] ){
+                    
+                    //ici je scinde la fonction en deux options soit pour aficher le form3 soit pour enregistrer
+                    if(isset($_POST["payement"])){
+                        //A partir de la les test sont fini au peu effectuer une operation de finition pour le payement
                     extract($_POST);
+
 
                     //on recherche la quantite totale
                     $qteTotale=0;
-                    foreach ($$articleVente as $article) {
+                    foreach ($articleVente as $article) {
                         # code...
                         $qteTotale+=$article[0];
                     }
@@ -55,9 +60,13 @@ class VenteController extends Controller{
                     $this->venteModel->insert($panier);
                     Session::unset("panier");
                     Session::set("success","vente enregistrer avec success");
-                    $this->renderView("vente/form1");
+                    $this->redirect("VenteController/selectClient");
                     exit();
-                }
+                    }
+
+                    
+                } $this->renderView("vente/form3",["somme"=>$this->sommeArticleVente()]);
+                    exit();
                 
 
             }
@@ -69,7 +78,7 @@ class VenteController extends Controller{
        
 
     }
-
+   
     public function selectArticleVente(){
         if(!Session::isset("panier")){
             $this->redirect("VenteController/selectClient");

@@ -157,10 +157,16 @@ class VenteModel extends Model{
     }
     public function insert($panier){
         //$sql="select * from categorie where id=$id" ;Jamais
-        $sql="INSERT INTO `vente` (`id`, `qteTotale`, `date`, `montant`, `observation`, `statut`, `clientID`) VALUES (NULL, ':qteTotale', ':date', ':montant', ':observation', ':statut', ':clientID')";//Requete preparee
+        $sql="INSERT INTO $this->table  VALUES (NULL, :qteTotale, :date, :montant, :observation, :statut, :clientID)" ;//Requete preparee
         //prepare ==> requete avec parametres
         $stm= self::$dataBase->prepare($sql);
-        $stm->execute(["date" => $this->date,"observation" => $this->observation,"qteTotale"=>$this->qteTotale,"montant"=>$this->montant,"statut"=>$this->statut,"clientID",$this->clientID]);
+        $stm->execute([ "qteTotale" =>   $this->qteTotale,
+                        "date" =>        $this->date,
+                        "montant" =>     $this->montant,
+                        "observation" => $this->observation,
+                        "statut"  =>    $this->statut?1:0,
+                        "clientID" =>  $this->clientID]);
+
         if($stm->rowCount()==1){
 			$venteID= self::$dataBase->lastInsertId();
 
@@ -171,11 +177,13 @@ class VenteModel extends Model{
                 $payement->setDate(date("Y-m-d"));
                 $payement->setMontant($montant);
                 $payement->setVenteID($venteID);
+                $payement->insert();
             }
 
-			foreach($panier as $article){
+			foreach($panier["articleVente"] as $article){
 
 				//enregistrement des articles
+               
 					$newQte= $article[1]->getQteStock() - $article[0];
 
 					//enregistrement dans detailVente
@@ -183,7 +191,7 @@ class VenteModel extends Model{
 					$detailVente->setVenteID($venteID);
 					$detailVente->setQte($article[0]);
                     $detailVente->setArticleVenteID($article[1]->getId());
-                    $detailVente->setPrix($article[1]->setPrixVente());
+                    $detailVente->setPrix($article[1]->getPrixVente());
 					$detailVente->insert();
 				    $article[1]->updateOneAttributById($article[1]->getId(),"qteStock",$newQte);
             }

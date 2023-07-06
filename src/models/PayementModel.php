@@ -92,4 +92,14 @@ class PayementModel extends Model{
 
         return $this;
     }
+    public function insert(){
+        $sql="INSERT INTO `payement` (`id`, `montant`, `date`, `venteID`) VALUES (NULL, :montant, :date, :venteID)";
+        $stm= self::$dataBase->prepare($sql);
+        $stm->execute([ 
+                        "date" =>        $this->date,
+                        "montant" =>     $this->montant,
+                        "venteID"=>$this->venteID
+                        ]);
+
+    }
 }

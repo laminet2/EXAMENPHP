@@ -47,28 +47,25 @@
        <div class="card-body">
             <div class="table-responsive ">
                  <table class="table table-bordered" id="saveProductionTable" width="100%" cellspacing="0">
-                    <thead>
+                 <thead>
                          <tr>
                              <th>Libelle</th>
-                             <th>Prix</th> 
+                             <th>Type</th> 
                              <th>Quantite </th>          
                           </tr>
                     </thead>
                                     
                     <tbody>
-                        <?php  foreach(($_SESSION["panier"])["articleVente"] as $article): ?>
+                        <?php  foreach($articlesSelectionner as $articleSelectionner): ?>
                             <tr>
                                 <td>
-                                    <?= $article[1]->getLibelle() ?>
+                                    <?= $articleSelectionner[1]->getLibelle() ?>
                                 </td>
                                 <td>
-                                    <?= $article[1]->getPrixVente() ?>
+                                    <?= $articleSelectionner[1]->getType()=="articleConf"? "Article de Confection" : "Article de Vente" ?>
                                 </td>
                                 <td>
-                                    <?= $article[0] ?>
-                                </td>
-                                <td>
-                                    <?= $article[0]*$article[1]->getPrixVente() ?>
+                                    <?= $articleSelectionner[0] ?>
                                 </td>
                             </tr>
                         <?php endforeach ?> 
