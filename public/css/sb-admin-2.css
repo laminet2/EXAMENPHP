@@ -3279,6 +3279,39 @@ table#saveVenteTable thead th, table#saveVenteTable tbody td {
   text-align: center;
   
 }
+table.centrerElement td,table.centrerElement th{
+  text-align: center;
+}
+.recherche-img {
+  background-image: url(http://localhost/examenPHP/public/img/search.gif);
+  background-size: cover;
+  position: absolute;
+  top:0;
+  right: 0;
+  margin-right: 5rem;
+  margin-top: 3rem;
+  z-index: 1;
+  box-sizing: border-box;
+
+
+
+}
+.recherche-img img{
+  top: 0;
+  width: 100%;
+  height: 45vh;
+
+
+}
+section.search{
+  padding: 2rem;
+  color: white;
+  background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
 .dropdown-menu-left {
   right: auto;
   left: 0;

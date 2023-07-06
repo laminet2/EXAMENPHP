@@ -87,5 +87,13 @@ public static function getDataBase()
 {
 return self::$dataBase;
 }
+
+/**
+ * Get the value of table
+ */ 
+public function getTable()
+{
+return $this->table;
+}
 }
 ?>

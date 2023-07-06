@@ -135,6 +135,7 @@
          <script>
             $('#saveVenteTable').DataTable( {
                 dom: 'fl<"toolbar">rtip',
+                
                 initComplete: function(){
                 $("div.toolbar")
                     .html('<a type="button" class="btn toolbar btn-primary ml-3 mb-3" id="newClient">Nouveau Client  <i class="fa fa-plus-circle ml-2" aria-hidden="true"></i> </a>');
@@ -178,6 +179,45 @@
                 ],
                 
                 
+                
+                
+            } );
+        </script>
+        <script>
+            $('#listerTable').DataTable( {
+                
+                    
+                language: {
+                processing:     "Traitement en cours...",
+                search:         "Rechercher&nbsp;:",
+                lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
+                info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                infoPostFix:    "",
+                loadingRecords: "Chargement en cours...",
+                zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                emptyTable:     "Aucune donnée disponible dans le tableau",
+                paginate: {
+                    first:      "Premier",
+                    previous:   "Pr&eacute;c&eacute;dent",
+                    next:       "Suivant",
+                    last:       "Dernier"
+                },
+                aria: {
+                    sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                    sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                }
+                },
+                columnDefs:[
+                    { targets: 0, width: '5%' },
+                    { targets: 1, width: '25%' },
+
+                    { targets: 3, width: '5%' },
+
+                   
+                    
+                ],
                 
             } );
         </script>

@@ -1,10 +1,12 @@
 <ul class="navbar-nav backCustom sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <div class="sidebar-brand h-25">
-
+            <div class="sidebar-brand " style="height:8rem">
+            <div class="sidebar-brand-text  mx-3">
+                <img src="" class="img-fluid  ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+            </div>
             </div>                
-                <div class="sidebar-brand-text  mx-3"><img src="" class="img-fluid  ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></div>
+            
             
 
             <!-- Divider -->
@@ -81,6 +83,11 @@
                 <a class="nav-link" href="<?=BASE_URL?>/VenteController/selectClient">
                     <i class="fas fa-save" style=""></i>
                     <span>Enregistrer Vente</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=BASE_URL?>/VenteController/index">
+                <i class="fas fa-list"></i>              
+                <span>Lister Vente</span></a>
             </li>
 
             <hr class="sidebar-divider">

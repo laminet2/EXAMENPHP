@@ -258,8 +258,9 @@ class VenteController extends Controller{
         //si tu rentre avec un post ses pour filtrer
         //si tu rentre sans rien alors ses pour juste afficher
 
-        $ventes=$this->venteModel->find();
-        $this->renderview("vente/liste",["ventes"=>$ventes]);
+        $ventes=$this->venteModel->findAllReturnArray();
+        $clients=$this->clientModel->findBy("type","client");
+        $this->renderview("vente/liste",["ventes"=>$ventes,"clients"=>$clients]);
     }
     
 }
