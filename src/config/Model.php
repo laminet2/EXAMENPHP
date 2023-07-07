@@ -52,13 +52,23 @@ public function executeSelect(string $sql,array $data=[],$single=false){
 
     $stm= self::$dataBase->prepare($sql);
     $stm->setFetchMode(\PDO::FETCH_ASSOC);
-    $stm->execute($data);
     
-    if($single){
-       return  $stm->fetch() ;
-    }else{
-       return $stm->fetchAll(\PDO::FETCH_ASSOC); 
+    try {
+        //code...
+      
+        $stm->execute($data);
+        if($single){
+            return  $stm->fetch() ;
+         }else{
+            return $stm->fetchAll(\PDO::FETCH_ASSOC); 
+         }
+    } catch (\Exception $exception) {
+        //throw $th;
+        echo($exception);
+
     }
+    
+    
  }
  public function remove(int $id):int{
     //$sql="select * from categorie where id=$id" ;Jamais

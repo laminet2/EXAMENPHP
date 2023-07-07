@@ -253,12 +253,38 @@ class VenteController extends Controller{
         $this->redirect("VenteController/selectArticleVente");
             
     } 
+    public function RequeteCondition($data){
+        $condition="";
+        foreach($data as $key=>$value){
+            if($key=="date"){
+                $condition=$condition." and "."`$key`=:$key";
+            }else{
+                $condition=$condition." and "."$key=:$key";
+            }
+            
+        }
+        $condition = preg_replace('/and/i', "", $condition, 1);   
+        return $condition; 
+    }
     public function index($filter=null){
         //si tu rentre dans cette fonction avec un filter ses pour afficher details
         //si tu rentre avec un post ses pour filtrer
         //si tu rentre sans rien alors ses pour juste afficher
 
         $ventes=$this->venteModel->findAllReturnArray();
+        if(isset($_POST["filtrer"])){
+            unset($_POST["filtrer"]);
+            if($_POST["date"]==""){
+                unset($_POST["date"]);
+            }
+
+            if($_POST!==[]){
+                $data=$_POST;
+                $ventes= $this->venteModel->findByReturnArray($this->RequeteCondition($_POST),$data);
+            }
+            
+
+        }
         $clients=$this->clientModel->findBy("type","client");
         $this->renderview("vente/liste",["ventes"=>$ventes,"clients"=>$clients]);
     }

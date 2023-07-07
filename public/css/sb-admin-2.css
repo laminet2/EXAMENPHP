@@ -3283,13 +3283,10 @@ table.centrerElement td,table.centrerElement th{
   text-align: center;
 }
 .recherche-img {
-  background-image: url(http://localhost/examenPHP/public/img/search.gif);
-  background-size: cover;
   position: absolute;
   top:0;
   right: 0;
   margin-right: 5rem;
-  margin-top: 3rem;
   z-index: 1;
   box-sizing: border-box;
 
@@ -3304,6 +3301,7 @@ table.centrerElement td,table.centrerElement th{
 
 }
 section.search{
+  margin-top:3rem;
   padding: 2rem;
   color: white;
   background: #000000;  /* fallback for old browsers */

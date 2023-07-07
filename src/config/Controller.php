@@ -9,7 +9,7 @@ class Controller{
     {
         Session::start();
     }
-    public function renderView($view,$data=[],$menuDirectory="menu.html.php",$topBarDirectory="topBar.html.php"){
+    public function renderView($view,$data=[],$menuDirectory="menu.html.php",$topBarDirectory="topBarBlank.html.php"){
 
         //Verification si le layout est un blankPage
         if(!is_numeric(stripos($this->layout,"blank"))){

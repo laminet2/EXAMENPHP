@@ -12,8 +12,8 @@
             <!-- Divider -->
 
             <!-- Nav Item - Dashboard -->
-            <!--
-            <li class="nav-item ">
+           
+            <li class="nav-item bg-success" style="backdrop-filter: blur(50px)"  >
                 
                     <?php use App\Config\Session;
                     use App\Model\ResponsableModel;
@@ -21,7 +21,7 @@
                     $user=Session::get("user");
                     ?>
                     
-                    <a class="nav-link user-connect dropdown-toggle bg-success text-monospace font-weight-bold text-white" href="#" id="userDropdown" role="button"
+                    <a class="nav-link user-connect dropdown-toggle  text-monospace font-weight-bold text-white"   href="#" id="userDropdown" role="button"
                         aria-haspopup="true" data-toggle="modal" data-target="#logoutModal">
                         <?=$user->getNom()." ".$user->getPrenom() ?>
                         <img class="img-profile rounded-circle ml-2   "
@@ -29,7 +29,7 @@
                     </a>
 
             </li>
-                -->
+                
 
             <!-- Divider -->
             <hr class="sidebar-divider">

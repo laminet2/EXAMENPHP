@@ -201,9 +201,21 @@ class VenteModel extends Model{
     } 
     function findAllReturnArray(){
         $clientModel=new ClientModel;
+
         $clientTable=$clientModel->getTable();
         $sql="SELECT vente.id,qteTotale,montant,date,statut,nom,prenom FROM `vente`,`acteur` WHERE $this->table.clientID=$clientTable.id and $clientTable.id=$this->table.clientID";
         
         return $this->executeSelectReturnArray($sql);
+    }
+    function findByReturnArray(string $filter,$data){
+        $clientModel=new ClientModel;
+        $clientTable=$clientModel->getTable();
+
+        $sql="SELECT vente.id,qteTotale,montant,date,statut,nom,prenom FROM `vente`,`acteur` WHERE $this->table.clientID=$clientTable.id and $clientTable.id=$this->table.clientID";
+        $sql=$sql." and ".$filter;
+
+        return $this->executeSelectReturnArray($sql,$data);
+
+        
     }
 }

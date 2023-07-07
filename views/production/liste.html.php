@@ -60,33 +60,25 @@
                  <table class="table table-bordereless text-center" id="listerTable" width="100%" cellspacing="0">
                     <thead class="border-none bg-black" style="background:black;">
                          <tr>
-                             <th class="text-center text-uppercase">Vente ID</th>
+                             <th class="text-center text-uppercase">Production ID</th>
 
-                             <th class="text-center text-uppercase">Client</th>
+                             <th class="text-center text-uppercase">Date</th>
 
-                             <th class="text-center text-uppercase">Montant</th> 
-                             <th class="text-center text-uppercase">
-                                articles
-                             </th>
+                             <th class="text-center text-uppercase">Observation</th> 
 
-                             <th class="text-center text-uppercase">date</th>
-                                     
-                             <th class="text-center text-uppercase">Statut</th>  
-
-                             <th class="text-center text-uppercase">Detail</th>    
-     
+                             <th class="text-center text-uppercase">Statut</th> 
                           </tr>
                     </thead>
                                     
                     <tbody>
-                    <?php  foreach($ventes as $vente): ?>
+                    <?php  foreach($productions as $production): ?>
                          <tr>
                             <td>
-                                <?=$vente["id"] ?>
+                                <?=$production["id"] ?>
                             </td>
                             
                             <td>
-                                <?= $vente["nom"]." ". $vente["prenom"] ?>
+                                <?= $production["nom"]." ". $production["prenom"] ?>
                             </td>
                             
                             <td>

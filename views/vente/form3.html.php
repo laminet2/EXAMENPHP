@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-outline col-6">
                             <span class="form-label">Observation Vente</span>
-                            <textarea class="form-control m-3" id="Observation"  rows="2" maxlength="350" style="height:3rem" ></textarea>
+                            <textarea class="form-control m-3" id="Observation" name="observation" rows="2" maxlength="350" style="height:3rem" ></textarea>
                         </div>
                         
                         </div>

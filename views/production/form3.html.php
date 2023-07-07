@@ -33,7 +33,7 @@
                     <div class="form-group row">
                         <div class="form-outline col-4">
                             <span class="form-label">Observation</span>
-                            <textarea class="form-control m-3" id="Observation" rows="4" maxlength="350" ></textarea>
+                            <textarea class="form-control m-3" id="Observation" rows="4" name="observation" maxlength="350" ></textarea>
                         </div>
                         <div class="offset-2 form-btn col-md-6 mt-5 d-flex justify-content-end ">
                             <button type="submit" class="submit-btn btn ml-5" name="save" >ENREGISTRER <i class="fas fa-save"></i> </button>
