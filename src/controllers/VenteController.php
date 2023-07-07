@@ -283,10 +283,14 @@ class VenteController extends Controller{
 
                     //Verification Terminer
                     $payements=$this->payementModel->findBy("venteID",$filter[1]);
-                    $detailVentes=$this->detailVenteModel->findBy("venteID",$filter[1]);
-                    $client=$this->clientModel->findBy("id",$key->getClientID());
-                
-                    $this->renderView('vente/detail',["payements"=>$payements,"detailVentes"=>$detailVentes,"client"=>$client]);
+                    $detailVentes=$this->detailVenteModel->findByReturnArray("venteID=:venteID",["venteID"=>$filter[1]]);
+                    $client=$this->clientModel->findBy("id",$key->getClientID(),true);
+                    $vente=$this->venteModel->findBy("id",$filter[1],true);
+                    $somme=0;
+                    foreach ($payements as $payement) {
+                        $somme+=$payement->getMontant();
+                    }
+                    $this->renderView('vente/detail',["payements"=>$payements,"detailVentes"=>$detailVentes,"client"=>$client,"somme"=>$somme,"vente"=>$vente]);
 
 
                 }
@@ -300,6 +304,21 @@ class VenteController extends Controller{
 
         $clients=$this->clientModel->findBy("type","client");
         $this->renderview("vente/liste",["ventes"=>$ventes,"clients"=>$clients]);
+    }
+
+    public function savePaiement(){
+        if(isset($_POST["montant"])){
+            if($_POST["montant"]>$_POST["montantRestant"] || $_POST["montant"]<=0){
+                $erreurs["payement"]="Montant entrer invalide";
+                Session::set("erreurs",$erreurs);
+            }else{
+                $this->payementModel->setMontant($_POST["montant"]);
+                $this->payementModel->setDate(date("Y-m-d"));
+                $this->payementModel->setVenteID($_POST["articleVenteID"]);
+                $this->payementModel->insert();
+                Session::set("success","Payement Enregistrer avec succes");
+            }
+        }$this->redirect("VenteController/index/vente-".$_POST["articleVenteID"]);
     }
     
 }

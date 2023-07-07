@@ -106,6 +106,17 @@ class DetailVenteModel extends Model{
 		$this->venteID = $venteID;
 		return $this;
 	}
+    function findByReturnArray(string $filter,$data){
+        $articleTable=new ArticleVenteModel;
+        $articleTable=$articleTable->getTable();
+
+        $sql="SELECT $this->table.qte,$this->table.prix,article.libelle,article.photo FROM `article`,$this->table WHERE $this->table.articleVenteID=$articleTable.id and $articleTable.id=$this->table.articleVenteID";
+        $sql=$sql." and ".$filter;
+
+        return $this->executeSelectReturnArray($sql,$data);
+
+        
+    }
     public function insert(){
         $sql="INSERT INTO `detailvente` (`id`, `articleVenteID`, `qte`, `venteID`, `prix`) VALUES (NULL, :articleID, :qte, :venteID, :prix)";
         $stm= self::$dataBase->prepare($sql);

@@ -80,9 +80,11 @@ class Controller{
                     break;
                 
                 case 'ResponsableVente':
+                    $this->redirect("VenteController/selectClient");
                     #code...
                     break;
                 case 'ResponsableProduction':
+                    $this->redirect("ProductionController/add");
                     break;
             
             }  

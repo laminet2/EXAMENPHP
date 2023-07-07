@@ -90,29 +90,27 @@
                     </thead>
                                     
                     <tbody>
-                    <?php  foreach($ventes as $vente): ?>
+                    <?php  foreach($production as $production): ?>
                          <tr>
                             <td>
-                                <?=$vente["id"] ?>
+                                <?=$production ?>
                             </td>
                             
                             <td>
-                                <?= $vente["nom"]." ". $vente["prenom"] ?>
+                                <?= $production ?>
                             </td>
                             
                             <td>
-                                <?=$vente["montant"] ?>
+                                <?=$production?>
                             </td>
                             
                             <td>
-                                <?= $vente["qteTotale"] ?>
+                                <?= $production ?>
                             </td>
                             <td>
-                                <?=$vente["date"] ?>
+                                <?=$production ?>
                             </td>
-                            <td>
-                                <span class="badge p-2 badge-<?= $vente["statut"]==0?"danger":"success" ?>"><?= $vente["statut"]==0?"Impayer":"Payer" ?> </span>
-                            </td>
+                            
                             <td class="" >
                                 <a name="" id="" class="btn btn-primary" href="<?=BASE_URL?>/VenteController/index/vente-<?=$vente["id"] ?>" role="button">Voir <i class="fas fa-plus-circle"></i></a>
                             </td>
