@@ -1,9 +1,19 @@
+<?php use App\Config\Controller;
+        use App\Config\Help;
+        use App\Config\Session;
 
+        $controller=new Controller;
+        $role=Session::getRole();
+        if($role==null || !in_array($role,["Admin","ResponsableProduction"])){
+            
+            $controller->redirectByRole(Session::get("user")??null);
+        }
+?>
 <section>
 <div class="card shadow mb-4  " style="margin-top:3rem">
        <div class="card-body">
             <div class="table-responsive ">
-                 <table class="table table-bordereless text-center" id="listerTable" width="100%" cellspacing="0">
+                 <table class="table table-bordereless text-center" id="detailTable" width="100%" cellspacing="0">
                     <thead class="border-none bg-black" style="background:black;">
                          <tr>
                              <th class="text-center text-uppercase">Production ID</th>
@@ -20,32 +30,21 @@
                     <?php  foreach($productions as $production): ?>
                          <tr>
                             <td>
-                                <?=$production["id"] ?>
+                                <?=$production->getId()?>
                             </td>
                             
                             <td>
-                                <?= $production["nom"]." ". $production["prenom"] ?>
+                                <?= $production->getDate() ?>
                             </td>
                             
                             <td>
-                                <?=$production ?>
-                            </td>
-                            
-                            <td>
-                                <?= $vente["qteTotale"] ?>
-                            </td>
-                            <td>
-                                <?=$vente["date"] ?>
-                            </td>
-                            <td>
-                                <span class="badge p-2 badge-<?= $vente["statut"]==0?"danger":"success" ?>"><?= $vente["statut"]==0?"Impayer":"Payer" ?> </span>
-                            </td>
+                                <?=$production->getObservation() ?>
+                            </td>    
                             <td class="" >
-                                <a name="" id="" class="btn btn-primary" href="<?=BASE_URL?>/VenteController/detail/vente-<?=$vente["id"] ?>" role="button">Voir <i class="fas fa-plus-circle"></i></a>
+                                <a name="" id="" class="btn btn-primary" href="<?=BASE_URL?>/ProductionController/index/production-<?=$production->getId() ?>" role="button">Voir <i class="fas fa-plus-circle"></i></a>
                             </td>
                         </tr>
                     <?php endforeach ?> 
-                        
                     </tbody>
                 </table>
             </div>

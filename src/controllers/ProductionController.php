@@ -221,14 +221,36 @@ class ProductionController extends Controller{
                 exit();
             }
                
+    }
+    public function index($filter=null){
+        //si tu rentre dans cette fonction avec un filter ses pour afficher details
+        //si tu rentre avec un post ses pour filtrer
+        //si tu rentre sans rien alors ses pour juste afficher
+
+        if($filter!=null){
+            //on cherche a filtrer
+            $filter=explode("-",$filter);
+            if(count($filter)==2){
+                $key=$this->productionModel->findBy("id",$filter[1],true);
+                if($key!=[]){
+
+                    //Verification Terminer
+                    
+                    $detailProductions=$this->detailProdModel->findByReturnArray("productionID=:productionID",["productionID"=>$filter[1]]);
+                    
+                    
+                    $this->renderView('production/detail',["articleVentes"=> $detailProductions]);
+                    exit();
+                }
+
+            }
+            
+
+        }
 
 
-
-       
-
-        
-
-
+        $productions=$this->productionModel->find();
+        $this->renderview("production/liste",["productions"=>$productions]);
     }
 
 

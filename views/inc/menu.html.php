@@ -65,23 +65,7 @@
                 </div>
             </li>
             <?php endif ?>
-            <?php if($role!==null && in_array($role,["Admin","ResponsableProduction"])): ?>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Gestion Production
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="<?=BASE_URL?>/ProductionController/add">
-                     <i class="fas fa-save" style=""></i>
-                    <span>Enregistrer une production</span></a>
-            </li>
-
             
-            <?php endif ?>
 
             <!-- Divider -->
 
@@ -104,11 +88,34 @@
                 <span>Lister Vente</span></a>
             </li>
 
-            <hr class="sidebar-divider">
 
             <!-- Heading -->
             
             <!-- Sidebar Toggler (Sidebar) -->
+            <?php endif ?>
+            <?php if($role!==null && in_array($role,["Admin","ResponsableProduction"])): ?>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Gestion Production
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?=BASE_URL?>/ProductionController/add">
+                     <i class="fas fa-save" style=""></i>
+                    <span>Enregistrer une production</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=BASE_URL?>/ProductionController/index">
+                <i class="fas fa-list"></i>              
+                <span>Lister Production</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
+
+            
             <?php endif ?>
 
             
