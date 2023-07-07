@@ -4,6 +4,7 @@
       use App\Model\ArticleVenteModel;
       use App\Model\ClientModel;
       use App\Model\DetailVenteModel;
+      use App\Model\PayementModel;
       use App\Model\VenteModel;
       use Rakit\Validation\Validator;
       use App\config\Model;
@@ -12,6 +13,7 @@ class VenteController extends Controller{
     private $detailVenteModel;
     private $articleVenteModel;
     private $clientModel;
+    private $payementModel;
     public function __construct(){
         parent::__construct();
         $this->layout="base";
@@ -19,6 +21,7 @@ class VenteController extends Controller{
         $this->detailVenteModel = new DetailVenteModel;
         $this->articleVenteModel =new ArticleVenteModel;
         $this->clientModel = new ClientModel;
+        $this->payementModel=new PayementModel;
     }
 
     function sommeArticleVente(){
@@ -111,7 +114,7 @@ class VenteController extends Controller{
             if( count($filter)==2 &&  ctype_digit($filter[1]) ){
                 //filter pour selecetionner un client
 
-                $client=$this->clientModel->findBy("type","client",true);
+                $client=$this->clientModel->findBy("id",$filter[1],true);
                 if($client!=false){
                     $panier=[];
                     $panier["client"]=$client;
@@ -253,19 +256,8 @@ class VenteController extends Controller{
         $this->redirect("VenteController/selectArticleVente");
             
     } 
-    public function RequeteCondition($data){
-        $condition="";
-        foreach($data as $key=>$value){
-            if($key=="date"){
-                $condition=$condition." and "."`$key`=:$key";
-            }else{
-                $condition=$condition." and "."$key=:$key";
-            }
-            
-        }
-        $condition = preg_replace('/and/i', "", $condition, 1);   
-        return $condition; 
-    }
+    
+    
     public function index($filter=null){
         //si tu rentre dans cette fonction avec un filter ses pour afficher details
         //si tu rentre avec un post ses pour filtrer
@@ -280,11 +272,32 @@ class VenteController extends Controller{
 
             if($_POST!==[]){
                 $data=$_POST;
-                $ventes= $this->venteModel->findByReturnArray($this->RequeteCondition($_POST),$data);
+                $ventes= $this->venteModel->findByReturnArray($this->venteModel->RequeteCondition($_POST),$data);
+            }
+        }elseif($filter!=null){
+            //on cherche a filtrer
+            $filter=explode("-",$filter);
+            if(count($filter)==2){
+                $key=$this->venteModel->findBy("id",$filter[1],true);
+                if($key!=[]){
+
+                    //Verification Terminer
+                    $payements=$this->payementModel->findBy("venteID",$filter[1]);
+                    $detailVentes=$this->detailVenteModel->findBy("venteID",$filter[1]);
+                    $client=$this->clientModel->findBy("id",$key->getClientID());
+                
+                    $this->renderView('vente/detail',["payements"=>$payements,"detailVentes"=>$detailVentes,"client"=>$client]);
+
+
+                }
+
             }
             
 
         }
+
+
+
         $clients=$this->clientModel->findBy("type","client");
         $this->renderview("vente/liste",["ventes"=>$ventes,"clients"=>$clients]);
     }

@@ -88,6 +88,19 @@ public function executeSelect(string $sql,array $data=[],$single=false){
         ]);
     return  $stm->rowCount() ;
  }
+ public function RequeteCondition($data){
+    $condition="";
+    foreach($data as $key=>$value){
+        if($key=="date"){
+            $condition=$condition." and "."`$key`=:$key";
+        }else{
+            $condition=$condition." and "."$key=:$key";
+        }
+        
+    }
+    $condition = preg_replace('/and/i', "", $condition, 1);   
+    return $condition; 
+}
 
 
 /**

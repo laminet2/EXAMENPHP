@@ -9,7 +9,7 @@ class DetailVenteModel extends Model{
 
     public function __construct(){
         parent::__construct();
-        $this->table="detailVenteModel";
+        $this->table="detailVente";
     }
 
     /**
