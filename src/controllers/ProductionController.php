@@ -226,9 +226,22 @@ class ProductionController extends Controller{
         //si tu rentre dans cette fonction avec un filter ses pour afficher details
         //si tu rentre avec un post ses pour filtrer
         //si tu rentre sans rien alors ses pour juste afficher
+        $productions=$this->productionModel->findByReturnArray();
 
-        if($filter!=null){
-            //on cherche a filtrer
+        if(isset($_POST["filtrer"])){
+
+            unset($_POST["filtrer"]);
+            if($_POST["date"]==""){
+                unset($_POST["date"]);
+            }
+
+            if($_POST!==[]){
+
+                $productions= $this->productionModel->findByReturnArray($this->productionModel->RequeteCondition($_POST),$_POST);
+            }
+
+        }elseif($filter!=null){
+            //on cherche a afficher les details
             $filter=explode("-",$filter);
             if(count($filter)==2){
                 $key=$this->productionModel->findBy("id",$filter[1],true);
@@ -248,9 +261,8 @@ class ProductionController extends Controller{
 
         }
 
-
-        $productions=$this->productionModel->find();
-        $this->renderview("production/liste",["productions"=>$productions]);
+        $articleVentes=$this->articleVenteModel->findBy("type","articleVente");
+        $this->renderview("production/liste",["productions"=>$productions,"articleVentes"=>$articleVentes]);
     }
 
 

@@ -93,9 +93,15 @@ public function executeSelect(string $sql,array $data=[],$single=false){
     foreach($data as $key=>$value){
         if($key=="date"){
             $condition=$condition." and "."`$key`=:$key";
+
+        }elseif(strpos($key, '_') !== false){
+           
+            $condition=$condition." and "."".str_replace('_', '.', $key)."=:$key";
+            
         }else{
             $condition=$condition." and "."$key=:$key";
-        }
+
+        }   
         
     }
     $condition = preg_replace('/and/i', "", $condition, 1);   

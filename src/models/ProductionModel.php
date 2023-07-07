@@ -75,7 +75,23 @@ class ProductionModel extends Model{
 			};
 		} 
     } 
+	function findByReturnArray(string $filter="",$data=[]){
+        $articleTable=new ArticleVenteModel;
+        $articleTable=$articleTable->getTable();
 
+		$detailProdModel=new DetailProdModel;
+		$detailprodTable=$detailProdModel->getTable();
+
+        $sql="SELECT distinct($this->table.id),$this->table.date,$this->table.observation FROM `article`,$this->table,$detailprodTable WHERE $this->table.id=$detailprodTable.productionID  and $detailprodTable.productionID=$this->table.id and $detailprodTable.articleVenteID=$articleTable.id and $articleTable.id=$detailprodTable.articleVenteID";
+		if($filter!=""){
+			$filter= " and ".$filter;
+			
+		}
+		$sql=$sql."".$filter;
+
+        return $this->executeSelectReturnArray($sql,$data);
+        
+    }
 	
 	
 

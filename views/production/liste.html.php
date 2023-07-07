@@ -9,6 +9,51 @@
             $controller->redirectByRole(Session::get("user")??null);
         }
 ?>
+<section class="container search bg-danger rounded ">
+    <div class="row">
+        <h1>
+            RECHERCHE AVANCE
+        </h1> 
+    </div>
+    
+    <form action="<?=BASE_URL?>/ProductionController/index" class="" method="post">
+        <div class="row  ">
+            <div class="  col-2">
+                <div class="form-group">
+                    <label for="">Date</label>
+                    <input type="date" name="date" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                </div>
+            </div>
+            <div class="col-2 ">
+                  <div class="form-group">
+                    <label for="">Articles Produits</label>
+                    <select class="form-control" name="article.id" id="">
+                      <option disabled selected>Selectionner</option>
+                      <?php foreach($articleVentes as $article):?>
+                        <option value="<?=$article->getId()?>" > <?=$article->getLibelle() ?> </option>
+                       <?php endforeach ?>
+                    </select>
+                  </div>
+            </div>
+
+            
+            <div class="col-2">
+                <div class="form-group">
+                        <label for=""></label>
+                        <button type="submit" class="btn btn-primary"  style=" margin-top:2rem">RECHERCHER <i class="fas fa-search"></i> </button>
+                  </div>
+            </div>
+            <input type="hidden" name="filtrer" value='true'>
+            <div class="col" >
+
+                
+            </div>
+        </div>
+    </form>
+    <div class="row recherche-img ">
+        <img src="<?=BASE_URL?>/public/img/search.gif" alt="" srcset="">
+    </div>
+</section>
 <section>
 <div class="card shadow mb-4  " style="margin-top:3rem">
        <div class="card-body">
@@ -30,18 +75,18 @@
                     <?php  foreach($productions as $production): ?>
                          <tr>
                             <td>
-                                <?=$production->getId()?>
+                                <?=$production["id"]?>
                             </td>
                             
                             <td>
-                                <?= $production->getDate() ?>
+                                <?= $production["date"] ?>
                             </td>
                             
                             <td>
-                                <?=$production->getObservation() ?>
+                                <?=$production["observation"] ?>
                             </td>    
                             <td class="" >
-                                <a name="" id="" class="btn btn-primary" href="<?=BASE_URL?>/ProductionController/index/production-<?=$production->getId() ?>" role="button">Voir <i class="fas fa-plus-circle"></i></a>
+                                <a name="" id="" class="btn btn-primary" href="<?=BASE_URL?>/ProductionController/index/production-<?=$production["id"] ?>" role="button">Voir <i class="fas fa-plus-circle"></i></a>
                             </td>
                         </tr>
                     <?php endforeach ?> 
