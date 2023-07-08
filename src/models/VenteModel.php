@@ -194,6 +194,7 @@ class VenteModel extends Model{
                     $detailVente->setPrix($article[1]->getPrixVente());
 					$detailVente->insert();
 				    $article[1]->updateOneAttributById($article[1]->getId(),"qteStock",$newQte);
+                    $article[1]->updateOneAttributById($article[1]->getId(),"montantVente",$article[1]->getMontantVente()+($article[0]*$article[1]->getPrixVente()));
             }
 				
 		};

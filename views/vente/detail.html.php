@@ -9,6 +9,14 @@
             $controller->redirectByRole(Session::get("user")??null);
         }
 ?>
+<div class="row">
+    <a href="<?=BASE_URL?>/VenteController/index" class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-left"></i>
+        </span>
+        <span class="text">Retourner aux liste</span>
+    </a>
+</div>
 <div class="ml-3 container">
 	<div class="row">
         <?php if($errors!=[]): ?>
@@ -83,12 +91,12 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= ($somme/$vente->getMontant())*100 ?></div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= round(($somme/$vente->getMontant()),4)*100 ?></div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width:<?= ($somme/$vente->getMontant())*100 ?>%" aria-valuenow="<?= ($somme/$vente->getMontant())*100 ?>" aria-valuemin="0"
+                                                            style="width:<?= round(($somme/$vente->getMontant()),2)*100 ?>%" aria-valuenow="" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>

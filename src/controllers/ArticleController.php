@@ -71,12 +71,16 @@ class ArticleController extends Controller{
             $validation = $validator->make($_POST + $_FILES, [
             'libelle'                 => 'required',
             'qteStock'              => 'numeric|min:0',
-            'photo' =>            'uploaded_file:0,500K,jpg,jpeg',
+            'photo' =>            'uploaded_file|max:500K|mimes:jpeg,png,',
             'categorieID'=>     'required'
             ]); 
             $validation->setMessage('required', ':attribute Obligatoire .');
             $validation->setMessage('min:0', ' Pourquoi mettre une :attribute négative ?');
             $validation->setMessage('uploades_file',"Une erreur s'est produite lors de l'envoi de la photo verifiez que la :attribute est de taille inferieur a 500ko et du format jpg ou jpeg.");
+            $validation->setMessage('max',"la taille de la photo  est trop grande verifiez que la :attribute est de taille inferieur a 500ko");
+            $validation->setMessage('mimes',"le format de la :attribute doit etre jpeg ou png ");
+
+
 
             $validation->validate();
             if(!$validation->fails()){

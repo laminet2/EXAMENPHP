@@ -9,7 +9,14 @@
             $controller->redirectByRole(Session::get("user")??null);
         }
 ?>
-
+<div class="row">
+    <a href="<?=BASE_URL?>/ProductionController/index" class="btn btn-white btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-left"></i>
+        </span>
+        <span class="text">Retourner aux liste</span>
+    </a>
+</div>
 <section>
 <div class=" row mt-3 text-dark">
         <h1>
